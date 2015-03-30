@@ -13,6 +13,7 @@
 typedef enum { DEV, TEST, INT, STAG, PROD } ENVIRONMENT;
 
 + (void) setup:(ENVIRONMENT)env
+      language:(NSString*)applicationLanguage
         appKey:(NSString*)applicationKey;
 
 + (NSDictionary*) defaultHeaders;
@@ -20,6 +21,8 @@ typedef enum { DEV, TEST, INT, STAG, PROD } ENVIRONMENT;
 + (NSDictionary*) imageHeaders;
 
 + (ENVIRONMENT) currentEnvironment;
+
++ (NSString*) currentLanguage;
 
 + (NSString*) currentAppKey;
 

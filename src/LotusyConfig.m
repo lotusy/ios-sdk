@@ -17,11 +17,14 @@
 @implementation LotusyConfig
 
 static ENVIRONMENT env;
+static NSString* language = @"en";
 static NSString* appKey = nil;
 
 + (void) setup:(ENVIRONMENT)environment
+      language:(NSString*)applicationLanguage
         appKey:(NSString*)applicationKey {
     env = environment;
+    language = applicationLanguage;
     appKey = applicationKey;
 }
 
@@ -51,6 +54,10 @@ static NSString* appKey = nil;
 
 + (ENVIRONMENT) currentEnvironment {
     return env;
+}
+
++ (NSString*) currentLanguage {
+    return language;
 }
 
 + (NSString*) currentAppKey {
