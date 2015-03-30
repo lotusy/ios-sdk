@@ -47,6 +47,8 @@
 		E89ADA77198812A8001D76B9 /* LotusyReply.h in Headers */ = {isa = PBXBuildFile; fileRef = E89ADA72198812A8001D76B9 /* LotusyReply.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E89ADA78198812A8001D76B9 /* LotusyToken.h in Headers */ = {isa = PBXBuildFile; fileRef = E89ADA73198812A8001D76B9 /* LotusyToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E89ADA79198812A8001D76B9 /* LotusyUser.h in Headers */ = {isa = PBXBuildFile; fileRef = E89ADA74198812A8001D76B9 /* LotusyUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E8AB97341AC9D2140025FB51 /* PageSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = E8AB97331AC9D2140025FB51 /* PageSDK.h */; };
+		E8AB97361AC9D2230025FB51 /* PageSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = E8AB97351AC9D2230025FB51 /* PageSDK.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +94,8 @@
 		E89ADA72198812A8001D76B9 /* LotusyReply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LotusyReply.h; sourceTree = "<group>"; };
 		E89ADA73198812A8001D76B9 /* LotusyToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LotusyToken.h; sourceTree = "<group>"; };
 		E89ADA74198812A8001D76B9 /* LotusyUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LotusyUser.h; sourceTree = "<group>"; };
+		E8AB97331AC9D2140025FB51 /* PageSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageSDK.h; sourceTree = "<group>"; };
+		E8AB97351AC9D2230025FB51 /* PageSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageSDK.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +169,7 @@
 				834E33191988A6F200A98DE1 /* BusinessSDK.h */,
 				834E331A1988A6F200A98DE1 /* CommentSDK.h */,
 				834E331B1988A6F200A98DE1 /* ImageSDK.h */,
+				E8AB97331AC9D2140025FB51 /* PageSDK.h */,
 				83B0F9AD198A089100C40D5B /* LotusyAddress.h */,
 				83B0F9AE198A089100C40D5B /* LotusyHours.h */,
 				83B0F9AF198A089100C40D5B /* LotusyLatLng.h */,
@@ -198,6 +203,7 @@
 				834E330D1988A6A500A98DE1 /* BusinessSDK.m */,
 				834E33111988A6B100A98DE1 /* CommentSDK.m */,
 				834E33151988A6C100A98DE1 /* ImageSDK.m */,
+				E8AB97351AC9D2230025FB51 /* PageSDK.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -231,6 +237,7 @@
 				E89ADA77198812A8001D76B9 /* LotusyReply.h in Headers */,
 				834E331D1988A6F200A98DE1 /* BusinessSDK.h in Headers */,
 				834E331C1988A6F200A98DE1 /* AccountSDK.h in Headers */,
+				E8AB97341AC9D2140025FB51 /* PageSDK.h in Headers */,
 				83B3BC98198A044D00EB5184 /* LotusySDK.h in Headers */,
 				834E331F1988A6F200A98DE1 /* ImageSDK.h in Headers */,
 				834E331E1988A6F200A98DE1 /* CommentSDK.h in Headers */,
@@ -331,6 +338,7 @@
 			files = (
 				83B0F9A8198A083500C40D5B /* LotusyAddress.m in Sources */,
 				834E33171988A6C100A98DE1 /* ImageSDK.m in Sources */,
+				E8AB97361AC9D2230025FB51 /* PageSDK.m in Sources */,
 				E89ADA6219880E6C001D76B9 /* LotusyUser.m in Sources */,
 				E89ADA5919880D5F001D76B9 /* LotusyConfig.m in Sources */,
 				83B0F9B9198A097F00C40D5B /* LotusyUtility.m in Sources */,
