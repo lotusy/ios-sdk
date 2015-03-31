@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong) LotusyConnectorParam* param;
 @property (nonatomic, strong) NSMutableData* dataJSON;
-@property (nonatomic, copy) void (^_callback)(NSError* result, NSDictionary* response);
+@property (nonatomic, copy) void (^_callback)(LotusyRESTResult* result, NSDictionary* response);
 
 @end
 
@@ -26,7 +26,7 @@
     return self;
 }
 
-- (void) execute:(void(^)(NSError*, NSDictionary*))callback {
+- (void) execute:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
     self._callback = callback;
 
     NSString* urlStr = self.param.uri;
@@ -67,8 +67,8 @@
 - (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
-    int responseStatusCode = [httpResponse statusCode];
-    NSLog(@"%d", responseStatusCode);
+    NSInteger responseStatusCode = [httpResponse statusCode];
+    NSLog(@"%lu", (long)responseStatusCode);
 }
 
 
@@ -80,22 +80,41 @@
 
 - (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    self._callback(error, nil);
+    LotusyRESTResult* result = nil;
+
+    result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:2];
+    [result addError:error.description];
+
+    self._callback(result, nil);
 }
 
 
 - (void) connectionDidFinishLoading:(NSURLConnection *)connection {
     NSError* error;
     NSDictionary* response = [NSJSONSerialization JSONObjectWithData:self.dataJSON options:kNilOptions error:&error];
-    
-    self._callback(error, response);
+
+    LotusyRESTResult* result = nil;
+
+    if (error==nil) {
+        NSString* status = [response objectForKey:@"status"];
+        if ([status isEqualToString:@"success"]) {
+            result = [[LotusyRESTResult alloc]initWithParam:YES statusCode:0];
+        } else {
+            result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:1];
+            [result addError:[response objectForKey:@"description"]];
+        }
+    } else {
+        result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:2];
+        [result addError:error.description];
+    }
+
+    self._callback(result, response);
 }
 
 
 - (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {
-    NSArray *trustedHosts = [NSArray arrayWithObjects:@"192.168.175.197",
-                             nil];
+    NSArray *trustedHosts = [NSArray arrayWithObjects:@"192.168.175.197", nil];
     if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]){
         if ([trustedHosts containsObject:challenge.protectionSpace.host]) {
             [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];

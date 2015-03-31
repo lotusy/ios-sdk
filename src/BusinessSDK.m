@@ -78,22 +78,11 @@
                                                                         file:nil];
     
     LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
-    [connector execute:^(NSError* error, NSDictionary* response) {
-        LotusyRESTResult* result = nil;
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
         LotusyBusiness* business = nil;
 
-        if (error==nil) {
-            NSString* status = [response objectForKey:@"status"];
-            if ([status isEqualToString:@"success"]) {
-                result = [[LotusyRESTResult alloc]initWithParam:YES statusCode:0];
-                business = [LotusyUtility parseBusiness:response];
-            } else {
-                result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:1];
-                [result addError:[response objectForKey:@"description"]];
-            }
-        } else {
-            result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:2];
-            [result addError:error.description];
+        if (result.success) {
+            business = [LotusyUtility parseBusiness:response];
         }
 
         callback(result, business);
@@ -113,22 +102,11 @@
                                                                         file:nil];
 
     LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
-    [connector execute:^(NSError* error, NSDictionary* response) {
-        LotusyRESTResult* result = nil;
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
         LotusyBusiness* business = nil;
 
-        if (error==nil) {
-            NSString* status = [response objectForKey:@"status"];
-            if ([status isEqualToString:@"success"]) {
-                result = [[LotusyRESTResult alloc]initWithParam:YES statusCode:0];
-                business = [LotusyUtility parseBusiness:response];
-            } else {
-                result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:1];
-                [result addError:[response objectForKey:@"description"]];
-            }
-        } else {
-            result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:2];
-            [result addError:error.description];
+        if (result.success) {
+            business = [LotusyUtility parseBusiness:response];
         }
 
         callback(result, business);
@@ -161,29 +139,18 @@
                                                                         file:nil];
 
     LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
-    [connector execute:^(NSError* error, NSDictionary* response) {
-        LotusyRESTResult* result = nil;
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
         NSMutableDictionary* businesses = nil;
         
-        if (error==nil) {
-            NSString* status = [response objectForKey:@"status"];
-            if ([status isEqualToString:@"success"]) {
-                result = [[LotusyRESTResult alloc]initWithParam:YES statusCode:0];
-                businesses = [[NSMutableDictionary alloc]init];
+        if (result.success) {
+            businesses = [[NSMutableDictionary alloc]init];
 
-                NSArray* businessArr = [response objectForKey:@"businesses"];
-                for (NSDictionary* businessDict in businessArr) {
-                    LotusyBusiness* business = [LotusyUtility parseBusiness:businessDict];
-                    NSNumber* distance = [businessDict objectForKey:@"distance"];
-                    [businesses setObject:business forKey:distance];
-                }
-            } else {
-                result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:1];
-                [result addError:[response objectForKey:@"description"]];
+            NSArray* businessArr = [response objectForKey:@"businesses"];
+            for (NSDictionary* businessDict in businessArr) {
+                LotusyBusiness* business = [LotusyUtility parseBusiness:businessDict];
+                NSNumber* distance = [businessDict objectForKey:@"distance"];
+                [businesses setObject:business forKey:distance];
             }
-        } else {
-            result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:2];
-            [result addError:error.description];
         }
         
         callback(result, businesses);
@@ -212,22 +179,7 @@
                                                                         file:nil];
 
     LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
-    [connector execute:^(NSError* error, NSDictionary* response) {
-        LotusyRESTResult* result = nil;
-
-        if (error==nil) {
-            NSString* status = [response objectForKey:@"status"];
-            if ([status isEqualToString:@"success"]) {
-                result = [[LotusyRESTResult alloc]initWithParam:YES statusCode:0];
-            } else {
-                result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:1];
-                [result addError:[response objectForKey:@"description"]];
-            }
-        } else {
-            result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:2];
-            [result addError:error.description];
-        }
-
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
         callback(result);
     }];
 }
@@ -246,22 +198,11 @@
                                                                         file:nil];
 
     LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
-    [connector execute:^(NSError* error, NSDictionary* response) {
-        LotusyRESTResult* result = nil;
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
         LotusyRating* rating = nil;
 
-        if (error==nil) {
-            NSString* status = [response objectForKey:@"status"];
-            if ([status isEqualToString:@"success"]) {
-                result = [[LotusyRESTResult alloc]initWithParam:YES statusCode:0];
-                rating = [LotusyUtility parseRating:response];
-            } else {
-                result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:1];
-                [result addError:[response objectForKey:@"description"]];
-            }
-        } else {
-            result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:2];
-            [result addError:error.description];
+        if (result.success) {
+            rating = [LotusyUtility parseRating:response];
         }
 
         callback(result, rating);

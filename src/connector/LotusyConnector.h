@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "LotusyConnectorParam.h"
+#import "LotusyRESTResult.h"
 
 @interface LotusyConnector : NSObject<NSURLConnectionDelegate>
 
 - (id) initWithParam:(LotusyConnectorParam*)parameter;
 
-- (void) execute:(void(^)(NSError*, NSDictionary*))callback;
+- (void) execute:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
 
 @end

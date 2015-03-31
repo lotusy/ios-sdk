@@ -40,22 +40,11 @@
                                                                         file:nil];
 
     LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
-    [connector execute:^(NSError* error, NSDictionary* response) {
-        LotusyRESTResult* result = nil;
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
         LotusyComment* comment = nil;
         
-        if (error==nil) {
-            NSString* status = [response objectForKey:@"status"];
-            if ([status isEqualToString:@"success"]) {
-                result = [[LotusyRESTResult alloc]initWithParam:YES statusCode:0];
-                comment = [LotusyUtility parseComment:response];
-            } else {
-                result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:1];
-                [result addError:[response objectForKey:@"description"]];
-            }
-        } else {
-            result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:2];
-            [result addError:error.description];
+        if (result.success) {
+            comment = [LotusyUtility parseComment:response];
         }
         
         callback(result, comment);
@@ -76,22 +65,11 @@
                                                                         file:nil];
 
     LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
-    [connector execute:^(NSError* error, NSDictionary* response) {
-        LotusyRESTResult* result = nil;
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
         LotusyComment* comment = nil;
 
-        if (error==nil) {
-            NSString* status = [response objectForKey:@"status"];
-            if ([status isEqualToString:@"success"]) {
-                result = [[LotusyRESTResult alloc]initWithParam:YES statusCode:0];
-                comment = [LotusyUtility parseComment:response];
-            } else {
-                result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:1];
-                [result addError:[response objectForKey:@"description"]];
-            }
-        } else {
-            result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:2];
-            [result addError:error.description];
+        if (result.success) {
+            comment = [LotusyUtility parseComment:response];
         }
 
         callback(result, comment);
@@ -112,22 +90,7 @@
                                                                         file:nil];
     
     LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
-    [connector execute:^(NSError* error, NSDictionary* response) {
-        LotusyRESTResult* result = nil;
-        
-        if (error==nil) {
-            NSString* status = [response objectForKey:@"status"];
-            if ([status isEqualToString:@"success"]) {
-                result = [[LotusyRESTResult alloc]initWithParam:YES statusCode:0];
-            } else {
-                result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:1];
-                [result addError:[response objectForKey:@"description"]];
-            }
-        } else {
-            result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:2];
-            [result addError:error.description];
-        }
-        
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
         callback(result);
     }];
 }
@@ -145,22 +108,7 @@
                                                                         file:nil];
     
     LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
-    [connector execute:^(NSError* error, NSDictionary* response) {
-        LotusyRESTResult* result = nil;
-        
-        if (error==nil) {
-            NSString* status = [response objectForKey:@"status"];
-            if ([status isEqualToString:@"success"]) {
-                result = [[LotusyRESTResult alloc]initWithParam:YES statusCode:0];
-            } else {
-                result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:1];
-                [result addError:[response objectForKey:@"description"]];
-            }
-        } else {
-            result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:2];
-            [result addError:error.description];
-        }
-        
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
         callback(result);
     }];
 }
@@ -178,22 +126,7 @@
                                                                         file:nil];
     
     LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
-    [connector execute:^(NSError* error, NSDictionary* response) {
-        LotusyRESTResult* result = nil;
-
-        if (error==nil) {
-            NSString* status = [response objectForKey:@"status"];
-            if ([status isEqualToString:@"success"]) {
-                result = [[LotusyRESTResult alloc]initWithParam:YES statusCode:0];
-            } else {
-                result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:1];
-                [result addError:[response objectForKey:@"description"]];
-            }
-        } else {
-            result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:2];
-            [result addError:error.description];
-        }
-
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
         callback(result);
     }];
 }
@@ -224,29 +157,18 @@
                                                                         file:nil];
 
     LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
-    [connector execute:^(NSError* error, NSDictionary* response) {
-        LotusyRESTResult* result = nil;
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
         NSMutableDictionary* comments = nil;
 
-        if (error==nil) {
-            NSString* status = [response objectForKey:@"status"];
-            if ([status isEqualToString:@"success"]) {
-                result = [[LotusyRESTResult alloc]initWithParam:YES statusCode:0];
-                comments = [[NSMutableDictionary alloc]init];
+        if (result.success) {
+            comments = [[NSMutableDictionary alloc]init];
 
-                NSArray* commentArr = [response objectForKey:@"comments"];
-                for (NSDictionary* commentDict in commentArr) {
-                    LotusyComment* comment = [LotusyUtility parseComment:commentDict];
-                    NSNumber* distance = [commentDict objectForKey:@"distance"];
-                    [comments setObject:comment forKey:distance];
-                }
-            } else {
-                result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:1];
-                [result addError:[response objectForKey:@"description"]];
+            NSArray* commentArr = [response objectForKey:@"comments"];
+            for (NSDictionary* commentDict in commentArr) {
+                LotusyComment* comment = [LotusyUtility parseComment:commentDict];
+                NSNumber* distance = [commentDict objectForKey:@"distance"];
+                [comments setObject:comment forKey:distance];
             }
-        } else {
-            result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:2];
-            [result addError:error.description];
         }
 
         callback(result, comments);
@@ -268,28 +190,17 @@
                                                                         file:nil];
 
     LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
-    [connector execute:^(NSError* error, NSDictionary* response) {
-        LotusyRESTResult* result = nil;
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
         NSMutableArray* comments = nil;
 
-        if (error==nil) {
-            NSString* status = [response objectForKey:@"status"];
-            if ([status isEqualToString:@"success"]) {
-                result = [[LotusyRESTResult alloc]initWithParam:YES statusCode:0];
-                comments = [[NSMutableArray alloc]init];
+        if (result.success) {
+            comments = [[NSMutableArray alloc]init];
 
-                NSArray* commentArr = [response objectForKey:@"comments"];
-                for (NSDictionary* commentDict in commentArr) {
-                    LotusyComment* comment = [LotusyUtility parseComment:commentDict];
-                    [comments addObject:comment];
-                }
-            } else {
-                result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:1];
-                [result addError:[response objectForKey:@"description"]];
+            NSArray* commentArr = [response objectForKey:@"comments"];
+            for (NSDictionary* commentDict in commentArr) {
+                LotusyComment* comment = [LotusyUtility parseComment:commentDict];
+                [comments addObject:comment];
             }
-        } else {
-            result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:2];
-            [result addError:error.description];
         }
 
         callback(result, comments);
@@ -311,28 +222,17 @@
                                                                         file:nil];
     
     LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
-    [connector execute:^(NSError* error, NSDictionary* response) {
-        LotusyRESTResult* result = nil;
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
         NSMutableArray* comments = nil;
         
-        if (error==nil) {
-            NSString* status = [response objectForKey:@"status"];
-            if ([status isEqualToString:@"success"]) {
-                result = [[LotusyRESTResult alloc]initWithParam:YES statusCode:0];
-                comments = [[NSMutableArray alloc]init];
-                
-                NSArray* commentArr = [response objectForKey:@"comments"];
-                for (NSDictionary* commentDict in commentArr) {
-                    LotusyComment* comment = [LotusyUtility parseComment:commentDict];
-                    [comments addObject:comment];
-                }
-            } else {
-                result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:1];
-                [result addError:[response objectForKey:@"description"]];
+        if (result.success) {
+            comments = [[NSMutableArray alloc]init];
+            
+            NSArray* commentArr = [response objectForKey:@"comments"];
+            for (NSDictionary* commentDict in commentArr) {
+                LotusyComment* comment = [LotusyUtility parseComment:commentDict];
+                [comments addObject:comment];
             }
-        } else {
-            result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:2];
-            [result addError:error.description];
         }
         
         callback(result, comments);
@@ -358,23 +258,13 @@
                                                                         file:nil];
 
     LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
-    [connector execute:^(NSError* error, NSDictionary* response) {
-        LotusyRESTResult* result = nil;
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
         LotusyReply* reply = nil;
         
-        if (error==nil) {
-            NSString* status = [response objectForKey:@"status"];
-            if ([status isEqualToString:@"success"]) {
-                result = [[LotusyRESTResult alloc]initWithParam:YES statusCode:0];
-                reply = [LotusyUtility parseReply:response];
-            } else {
-                result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:1];
-                [result addError:[response objectForKey:@"description"]];
-            }
-        } else {
-            result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:2];
-            [result addError:error.description];
+        if (result.success) {
+            reply = [LotusyUtility parseReply:response];
         }
+
         
         callback(result, reply);
     }];
@@ -395,28 +285,17 @@
                                                                         file:nil];
 
     LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
-    [connector execute:^(NSError* error, NSDictionary* response) {
-        LotusyRESTResult* result = nil;
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
         NSMutableArray* replies = nil;
         
-        if (error==nil) {
-            NSString* status = [response objectForKey:@"status"];
-            if ([status isEqualToString:@"success"]) {
-                result = [[LotusyRESTResult alloc]initWithParam:YES statusCode:0];
-                replies = [[NSMutableArray alloc]init];
-                
-                NSArray* replyArr = [response objectForKey:@"replies"];
-                for (NSDictionary* replyDict in replyArr) {
-                    LotusyReply* reply = [LotusyUtility parseReply:replyDict];
-                    [replies addObject:reply];
-                }
-            } else {
-                result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:1];
-                [result addError:[response objectForKey:@"description"]];
+        if (result.success) {
+            replies = [[NSMutableArray alloc]init];
+            
+            NSArray* replyArr = [response objectForKey:@"replies"];
+            for (NSDictionary* replyDict in replyArr) {
+                LotusyReply* reply = [LotusyUtility parseReply:replyDict];
+                [replies addObject:reply];
             }
-        } else {
-            result = [[LotusyRESTResult alloc]initWithParam:NO statusCode:2];
-            [result addError:error.description];
         }
         
         callback(result, replies);

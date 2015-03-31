@@ -26,4 +26,6 @@ typedef enum { DEV, TEST, INT, STAG, PROD } ENVIRONMENT;
 
 + (NSString*) currentAppKey;
 
++ (NSString*) url;
+
 @end

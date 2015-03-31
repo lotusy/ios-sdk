@@ -7,6 +7,9 @@
 //
 
 #import "PageSDK.h"
+#import "LotusyConfig.h"
+#import "LotusyConnectorParam.h"
+#import "LotusyConnector.h"
 
 @implementation PageSDK
 
@@ -15,13 +18,47 @@
                            start:(int)start
                             size:(int)size
                         callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
-    
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@%d%@%d", [LotusyConfig url], @"/business/", businessId, @"/dishes?start=", start, @"&size=", size];
+
+    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
+                                                                      method:@"GET"
+                                                                     headers:LotusyConfig.defaultHeaders
+                                                                        body:nil
+                                                                        file:nil];
+
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        NSArray* dishes = nil;
+
+        if (result.success) {
+            dishes = [response objectForKey:@"dishes"];
+        }
+
+        callback(result, dishes);
+    }];
 }
 
 
 + (void) UC001_getDishDetails:(int)dishId
                      callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [LotusyConfig url], @"/flow/dish/", dishId, @"/detail"];
     
+    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
+                                                                      method:@"GET"
+                                                                     headers:LotusyConfig.defaultHeaders
+                                                                        body:nil
+                                                                        file:nil];
+
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        NSDictionary* dish = nil;
+        
+        if (result.success) {
+            dish = [response objectForKey:@"dish"];
+        }
+
+        callback(result, dish);
+    }];
 }
 
 

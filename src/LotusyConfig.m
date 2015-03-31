@@ -64,4 +64,32 @@ static NSString* appKey = nil;
     return appKey;
 }
 
+#pragma - pubilc / private
+
++ (NSString*) url {
+    ENVIRONMENT environment = [LotusyConfig currentEnvironment];
+    
+    NSString* uri = @"";
+    switch (environment) {
+        case DEV:
+            uri = @"http://local.api.foodster.club/rest";
+            break;
+        case TEST:
+            uri = @"http://test.api.foodster.club/rest";
+            break;
+        case INT:
+            uri = @"http://int.api.foodster.club/rest";
+            break;
+        case STAG:
+            uri = @"http://staging.api.foodster.club/rest";
+            break;
+        case PROD:
+            uri = @"http://api.foodster.club/rest";
+            break;
+    }
+    
+    return uri;
+}
+
+
 @end
