@@ -14,8 +14,6 @@
 
 
 + (void) UC001_getBusinessDishes:(int)businessId
-                           start:(int)start
-                            size:(int)size
                         callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
 
 
@@ -23,15 +21,12 @@
                      callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
 
 
-+ (void) UC002_getBuddiesDishActivities:(int)start
-                                   size:(int)size
-                               callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
++ (void) UC002_getBuddiesDishActivities:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
 
 
 + (void) UC002_getNearByFoods:(double)lat
                           lng:(double)lng
-                        start:(int)start
-                         size:(int)size
+                       radius:(int)radius
                      callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
 
 

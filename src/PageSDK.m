@@ -15,10 +15,8 @@
 
 
 + (void) UC001_getBusinessDishes:(int)businessId
-                           start:(int)start
-                            size:(int)size
                         callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@%d%@%d", [LotusyConfig url], @"/business/", businessId, @"/dishes?start=", start, @"&size=", size];
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [LotusyConfig url], @"/business/", businessId, @"/dishes?start=0&size=15"];
 
     LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
                                                                       method:@"GET"
@@ -52,7 +50,7 @@
     LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
     [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
         NSDictionary* dish = nil;
-        
+
         if (result.success) {
             dish = [response objectForKey:@"dish"];
         }
@@ -62,19 +60,50 @@
 }
 
 
-+ (void) UC002_getBuddiesDishActivities:(int)start
-                                   size:(int)size
-                               callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
-    
++ (void) UC002_getBuddiesDishActivities:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
+    NSString* uri = [NSString stringWithFormat:@"%@%@", [LotusyConfig url], @"/flow/user/followings/dishes?start=0&size=15"];
+
+    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
+                                                                      method:@"GET"
+                                                                     headers:LotusyConfig.defaultHeaders
+                                                                        body:nil
+                                                                        file:nil];
+
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        NSDictionary* dishes = nil;
+
+        if (result.success) {
+            dishes = [response objectForKey:@"activities"];
+        }
+
+        callback(result, dishes);
+    }];
 }
 
 
 + (void) UC002_getNearByFoods:(double)lat
                           lng:(double)lng
-                        start:(int)start
-                         size:(int)size
+                       radius:(int)radius
                      callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
-    
+    NSString* uri = [NSString stringWithFormat:@"%@%@%f%@%f%@%d%@", [LotusyConfig url], @"/dish/location?lat=", lat, @"&lng=", lng, @"&radius=", radius, @"&start=0&size=30"];
+
+    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
+                                                                      method:@"GET"
+                                                                     headers:LotusyConfig.defaultHeaders
+                                                                        body:nil
+                                                                        file:nil];
+
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        NSArray* dishes = nil;
+        
+        if (result.success) {
+            dishes = [response objectForKey:@"dishes"];
+        }
+
+        callback(result, dishes);
+    }];
 }
 
 
