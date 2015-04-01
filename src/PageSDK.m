@@ -17,12 +17,8 @@
 + (void) UC001_getBusinessDishes:(int)businessId
                         callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
     NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [LotusyConfig url], @"/business/", businessId, @"/dishes?start=0&size=15"];
-
-    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
-                                                                      method:@"GET"
-                                                                     headers:LotusyConfig.defaultHeaders
-                                                                        body:nil
-                                                                        file:nil];
+    
+    LotusyConnectorParam* param = [self getDefaultParam:uri];
 
     LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
     [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
@@ -41,11 +37,7 @@
                      callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
     NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [LotusyConfig url], @"/flow/dish/", dishId, @"/detail"];
     
-    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
-                                                                      method:@"GET"
-                                                                     headers:LotusyConfig.defaultHeaders
-                                                                        body:nil
-                                                                        file:nil];
+    LotusyConnectorParam* param = [self getDefaultParam:uri];
 
     LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
     [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
@@ -62,12 +54,8 @@
 
 + (void) UC002_getBuddiesDishActivities:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
     NSString* uri = [NSString stringWithFormat:@"%@%@", [LotusyConfig url], @"/flow/user/followings/dishes?start=0&size=15"];
-
-    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
-                                                                      method:@"GET"
-                                                                     headers:LotusyConfig.defaultHeaders
-                                                                        body:nil
-                                                                        file:nil];
+    
+    LotusyConnectorParam* param = [self getDefaultParam:uri];
 
     LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
     [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
@@ -87,12 +75,8 @@
                        radius:(int)radius
                      callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
     NSString* uri = [NSString stringWithFormat:@"%@%@%f%@%f%@%d%@", [LotusyConfig url], @"/dish/location?lat=", lat, @"&lng=", lng, @"&radius=", radius, @"&start=0&size=30"];
-
-    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
-                                                                      method:@"GET"
-                                                                     headers:LotusyConfig.defaultHeaders
-                                                                        body:nil
-                                                                        file:nil];
+    
+    LotusyConnectorParam* param = [self getDefaultParam:uri];
 
     LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
     [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
@@ -109,21 +93,52 @@
 
 + (void) UC002_getDishPopularity:(int)dishId
                         callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [LotusyConfig url], @"/flow/dish/", dishId, @"/popularity"];
     
+    LotusyConnectorParam* param = [self getDefaultParam:uri];
+                                   
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        callback(result, response);
+    }];
 }
 
 
 + (void) UC003_getDishPreference:(int)dishId
-                           start:(int)start
-                            size:(int)size
                         callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
-    
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [LotusyConfig url], @"/flow/dish/", dishId, @"/preference?start=0&size=10"];
+
+    LotusyConnectorParam* param = [self getDefaultParam:uri];
+
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        NSArray* users = nil;
+
+        if (result.success) {
+            users = [response objectForKey:@"detail"];
+        }
+
+        callback(result, users);
+    }];
 }
 
 
 + (void) UC003_getDishInfograph:(int)dishId
                        callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
-    
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [LotusyConfig url], @"/flow/dish/", dishId, @"/infograph"];
+
+    LotusyConnectorParam* param = [self getDefaultParam:uri];
+
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        NSDictionary* detail = nil;
+        
+        if (result.success) {
+            detail = [response objectForKey:@"detail"];
+        }
+
+        callback(result, detail);
+    }];
 }
 
 
@@ -178,5 +193,13 @@
     
 }
 
+
++ (LotusyConnectorParam*) getDefaultParam:(NSString*)uri {
+    return [[LotusyConnectorParam alloc]initWithParam:uri
+                                               method:@"GET"
+                                              headers:LotusyConfig.defaultHeaders
+                                                 body:nil
+                                                 file:nil];
+}
 
 @end

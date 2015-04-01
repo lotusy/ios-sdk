@@ -35,8 +35,6 @@
 
 
 + (void) UC003_getDishPreference:(int)dishId
-                           start:(int)start
-                            size:(int)size
                         callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
 
 
