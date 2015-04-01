@@ -42,7 +42,7 @@
                        callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
 
 
-+ (void) UC004_getBuddiesActivities:(void(^)(LotusyRESTResult*, NSArray*))callback;
++ (void) UC004_getBuddiesActivities:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
 
 
 + (void) UC004_getMyProfile:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
@@ -51,13 +51,13 @@
 + (void) UC004_getMyProfileBuddies:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
 
 
-+ (void) UC004_getMyBuddies:(void(^)(LotusyRESTResult*, NSArray*))callback;
++ (void) UC004_getMyBuddies:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
 
 
-+ (void) UC004_getNetworkBuddies:(void(^)(LotusyRESTResult*, NSArray*))callback;
++ (void) UC004_getNetworkBuddies:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
 
 
-+ (void) UC004_getSuggestBuddies:(void(^)(LotusyRESTResult*, NSArray*))callback;
++ (void) UC004_getSuggestBuddies:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
 
 
 + (void) UC005_getUserProfileRanking:(int)userId
@@ -71,7 +71,7 @@
 + (void) UC006_getProfileSettings:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
 
 
-+ (void) UC006_getProfileSettingAlerts:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
++ (void) UC006_getProfileSettingAlerts:(void(^)(LotusyRESTResult*, NSArray*))callback;
 
 
 @end

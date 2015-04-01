@@ -10,6 +10,7 @@
 #import "LotusyConfig.h"
 #import "LotusyConnectorParam.h"
 #import "LotusyConnector.h"
+#import "LotusyUser.h"
 
 @implementation PageSDK
 
@@ -142,55 +143,131 @@
 }
 
 
-+ (void) UC004_getBuddiesActivities:(void(^)(LotusyRESTResult*, NSArray*))callback {
++ (void) UC004_getBuddiesActivities:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [LotusyConfig url], @"/flow/user/", [LotusyUser current].userId , @"/activities"];
+
+    LotusyConnectorParam* param = [self getDefaultParam:uri];
     
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        callback(result, response);
+    }];
 }
 
 
 + (void) UC004_getMyProfile:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
+    NSString* uri = [NSString stringWithFormat:@"%@%@", [LotusyConfig url], @"/flow/me/profile"];
     
+    LotusyConnectorParam* param = [self getDefaultParam:uri];
+    
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        callback(result, response);
+    }];
 }
 
 
 + (void) UC004_getMyProfileBuddies:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
+    NSString* uri = [NSString stringWithFormat:@"%@%@", [LotusyConfig url], @"/flow/me/buddies"];
     
+    LotusyConnectorParam* param = [self getDefaultParam:uri];
+    
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        callback(result, response);
+    }];
 }
 
 
-+ (void) UC004_getMyBuddies:(void(^)(LotusyRESTResult*, NSArray*))callback {
++ (void) UC004_getMyBuddies:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
+    NSString* uri = [NSString stringWithFormat:@"%@%@", [LotusyConfig url], @"/flow/me/buddy/add"];
     
+    LotusyConnectorParam* param = [self getDefaultParam:uri];
+    
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        callback(result, response);
+    }];
 }
 
 
-+ (void) UC004_getNetworkBuddies:(void(^)(LotusyRESTResult*, NSArray*))callback {
++ (void) UC004_getNetworkBuddies:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
+    NSString* uri = [NSString stringWithFormat:@"%@%@", [LotusyConfig url], @"/flow/me/buddy/add/network"];
     
+    LotusyConnectorParam* param = [self getDefaultParam:uri];
+    
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        callback(result, response);
+    }];
 }
 
 
-+ (void) UC004_getSuggestBuddies:(void(^)(LotusyRESTResult*, NSArray*))callback {
++ (void) UC004_getSuggestBuddies:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
+    NSString* uri = [NSString stringWithFormat:@"%@%@", [LotusyConfig url], @"/flow/me/buddy/add/suggest"];
     
+    LotusyConnectorParam* param = [self getDefaultParam:uri];
+    
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        callback(result, response);
+    }];
 }
 
 
 + (void) UC005_getUserProfileRanking:(int)userId
                             callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
-    
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [LotusyConfig url], @"/flow/user/", userId ,@"/profile/ranking"];
+
+    LotusyConnectorParam* param = [self getDefaultParam:uri];
+
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        callback(result, response);
+    }];
 }
 
 
 + (void) UC005_getOtherProfile:(int)userId
                       callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [LotusyConfig url], @"/flow/user/", userId ,@"/profile"];
     
+    LotusyConnectorParam* param = [self getDefaultParam:uri];
+    
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        callback(result, response);
+    }];
 }
 
 
 + (void) UC006_getProfileSettings:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
+    NSString* uri = [NSString stringWithFormat:@"%@%@", [LotusyConfig url], @"/flow/me/setting"];
     
+    LotusyConnectorParam* param = [self getDefaultParam:uri];
+    
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        callback(result, response);
+    }];
 }
 
 
-+ (void) UC006_getProfileSettingAlerts:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
++ (void) UC006_getProfileSettingAlerts:(void(^)(LotusyRESTResult*, NSArray*))callback {
+    NSString* uri = [NSString stringWithFormat:@"%@%@", [LotusyConfig url], @"/flow/me/setting/alerts"];
     
+    LotusyConnectorParam* param = [self getDefaultParam:uri];
+    
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        NSArray* alerts = nil;
+
+        if (result.success) {
+            alerts = [response objectForKey:@"alters"];
+        }
+
+        callback(result, alerts);
+    }];
 }
 
 
