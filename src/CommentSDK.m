@@ -99,7 +99,7 @@
 + (void) likeComment:(int)commentId
             callback:(void(^)(LotusyRESTResult*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult]); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [CommentSDK url], @"/comment/", commentId, @"/like"];
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [LotusyConfig url], @"/comment/", commentId, @"/like"];
     
     LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
                                                                       method:@"PUT"
@@ -117,7 +117,7 @@
 + (void) dislikeComment:(int)commentId
                callback:(void(^)(LotusyRESTResult*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult]); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [CommentSDK url], @"/comment/", commentId, @"/dislike"];
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [LotusyConfig url], @"/comment/", commentId, @"/dislike"];
 
     LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
                                                                       method:@"PUT"
@@ -142,7 +142,7 @@
     NSString* miles = @"false";
     if (isMiles) { miles = @"true"; }
     NSString* uri = [NSString stringWithFormat:@"%@%@%f%@%f%@%d%@%@%@%d%@%d",
-                     [CommentSDK url],
+                     [LotusyConfig url],
                      @"/location?lat=", latlng.lat,
                      @"&lng=", latlng.lng,
                      @"&radius=", radius,
@@ -181,7 +181,7 @@
                  size:(int)size
              callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@%d%@%d", [CommentSDK url], @"/user/", userId, @"comments?start=", start, @"&size=", size];
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@%d%@%d", [LotusyConfig url], @"/user/", userId, @"comments?start=", start, @"&size=", size];
 
     LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
                                                                       method:@"GET"
@@ -213,7 +213,7 @@
                      size:(int)size
                  callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@%d%@%d", [CommentSDK url], @"/business/", businessId, @"comments?start=", start, @"&size=", size];
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@%d%@%d", [LotusyConfig url], @"/business/", businessId, @"comments?start=", start, @"&size=", size];
     
     LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
                                                                       method:@"GET"
@@ -244,7 +244,7 @@
              message:(NSString*)message
             callback:(void(^)(LotusyRESTResult*, LotusyReply*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
-    NSString* uri = [NSString stringWithFormat:@"%@%d%@", [CommentSDK url], commentId, @"/reply"];
+    NSString* uri = [NSString stringWithFormat:@"%@%d%@", [LotusyConfig url], commentId, @"/reply"];
 
     NSDictionary* body = @{ @"comment_id" : [[NSNumber alloc]initWithInt:commentId],
                             @"message" : message,
@@ -276,7 +276,7 @@
                    size:(int)size
                callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
-    NSString* uri = [NSString stringWithFormat:@"%@%d%@%d%@%d", [CommentSDK url], commentId, @"/replies?start=", start, @"&size=", size];
+    NSString* uri = [NSString stringWithFormat:@"%@%d%@%d%@%d", [LotusyConfig url], commentId, @"/replies?start=", start, @"&size=", size];
 
     LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
                                                                       method:@"GET"

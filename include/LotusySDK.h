@@ -16,7 +16,9 @@
 #import <LotusySDK/AccountSDK.h>
 #import <LotusySDK/BusinessSDK.h>
 #import <LotusySDK/CommentSDK.h>
+#import <LotusySDK/DishSDK.h>
 #import <LotusySDK/ImageSDK.h>
+#import <LotusySDK/PageSDK.h>
 
 #import <LotusySDK/LotusyBusiness.h>
 #import <LotusySDK/LotusyComment.h>

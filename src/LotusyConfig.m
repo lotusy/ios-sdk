@@ -31,6 +31,7 @@ static NSString* appKey = nil;
 + (NSDictionary*) defaultHeaders {
     NSMutableDictionary* header = [[NSMutableDictionary alloc]init];
     [header setObject:@"application/json" forKey:@"Content-Type"];
+    [header setObject:language forKey:@"Language"];
     [header setObject:appKey forKey:@"app-key"];
     LotusyToken* token = [LotusyToken current];
     if (token!=nil) {

@@ -34,7 +34,7 @@
                 address:(LotusyAddress*)address
                callback:(void(^)(LotusyRESTResult*, LotusyBusiness*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@", [BusinessSDK url], @"/business" ];
+    NSString* uri = [NSString stringWithFormat:@"%@%@", [LotusyConfig url], @"/business" ];
     NSMutableDictionary* body = [[NSMutableDictionary alloc]init];
     if (latlng!=nil) {
         [body setObject:[[NSNumber alloc] initWithDouble:latlng.lat] forKey:@"lat"];
@@ -93,7 +93,7 @@
 + (void) businessProfile:(int)businessId
                 callback:(void(^)(LotusyRESTResult*, LotusyBusiness*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [BusinessSDK url], @"/", businessId, @"/profile"];
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [LotusyConfig url], @"/", businessId, @"/profile"];
 
     LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
                                                                       method:@"GET"
@@ -124,7 +124,7 @@
     NSString* miles = @"false";
     if (isMiles) { miles = @"true"; }
     NSString* uri = [NSString stringWithFormat:@"%@%@%f%@%f%@%d%@%@%@%d%@%d",
-                     [BusinessSDK url],
+                     [LotusyConfig url],
                      @"/location?lat=", latlng.lat,
                      @"&lng=", latlng.lng,
                      @"&radius=", radius,
@@ -165,7 +165,7 @@
               service:(double)service
              callback:(void(^)(LotusyRESTResult*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult]); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [BusinessSDK url], @"/", businessId, @"/rate"];
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [LotusyConfig url], @"/", businessId, @"/rate"];
     NSDictionary* body = @{ @"overall" : [[NSNumber alloc]initWithDouble:overall],
                             @"food" : [[NSNumber alloc]initWithDouble:food],
                             @"env" : [[NSNumber alloc]initWithDouble:environment],
@@ -189,7 +189,7 @@
              userId:(int)userId
            callback:(void(^)(LotusyRESTResult*, LotusyRating*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@%d%@", [BusinessSDK url], @"/business/", businessId, @"/user/", userId, @"/rating"];
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@%d%@", [LotusyConfig url], @"/business/", businessId, @"/user/", userId, @"/rating"];
 
     LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
                                                                       method:@"GET"
