@@ -10,7 +10,7 @@
 #import "LotusyConfig.h"
 #import "LotusyConnectorParam.h"
 #import "LotusyConnector.h"
-#import "LotusyUser.h"
+#import "LotusyToken.h"
 
 @implementation PageSDK
 
@@ -74,8 +74,10 @@
 + (void) UC002_getNearByFoods:(double)lat
                           lng:(double)lng
                        radius:(int)radius
+                        miles:(BOOL)miles
                      callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
-    NSString* uri = [NSString stringWithFormat:@"%@%@%f%@%f%@%d%@", [LotusyConfig url], @"/dish/location?lat=", lat, @"&lng=", lng, @"&radius=", radius, @"&start=0&size=30"];
+    NSString* isMiles = miles ? @"&is_miles=true" : @"&is_miles=false";
+    NSString* uri = [NSString stringWithFormat:@"%@%@%f%@%f%@%d%@%@", [LotusyConfig url], @"/dish/location?lat=", lat, @"&lng=", lng, @"&radius=", radius, @"&start=0&size=15", isMiles];
     
     LotusyConnectorParam* param = [self getDefaultParam:uri];
 
@@ -143,8 +145,8 @@
 }
 
 
-+ (void) UC004_getBuddiesActivities:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [LotusyConfig url], @"/flow/user/", [LotusyUser current].userId , @"/activities"];
++ (void) UC004_getUserActivities:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [LotusyConfig url], @"/flow/user/", [LotusyToken current].userId , @"/activities"];
 
     LotusyConnectorParam* param = [self getDefaultParam:uri];
     
@@ -203,14 +205,20 @@
 }
 
 
-+ (void) UC004_getSuggestBuddies:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
++ (void) UC004_getSuggestBuddies:(void(^)(LotusyRESTResult*, NSArray*))callback {
     NSString* uri = [NSString stringWithFormat:@"%@%@", [LotusyConfig url], @"/flow/me/buddy/add/suggest"];
     
     LotusyConnectorParam* param = [self getDefaultParam:uri];
     
     LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
     [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
-        callback(result, response);
+        NSArray* users = nil;
+
+        if (result.success) {
+            users = [response objectForKey:@"list"];
+        }
+
+        callback(result, users);
     }];
 }
 
