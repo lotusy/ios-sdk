@@ -27,6 +27,7 @@
 + (void) UC002_getNearByFoods:(double)lat
                           lng:(double)lng
                        radius:(int)radius
+                        miles:(BOOL)miles
                      callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
 
 
@@ -42,7 +43,7 @@
                        callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
 
 
-+ (void) UC004_getBuddiesActivities:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
++ (void) UC004_getUserActivities:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
 
 
 + (void) UC004_getMyProfile:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
@@ -57,7 +58,7 @@
 + (void) UC004_getNetworkBuddies:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
 
 
-+ (void) UC004_getSuggestBuddies:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
++ (void) UC004_getSuggestBuddies:(void(^)(LotusyRESTResult*, NSArray*))callback;
 
 
 + (void) UC005_getUserProfileRanking:(int)userId

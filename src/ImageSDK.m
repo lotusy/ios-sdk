@@ -25,7 +25,7 @@
                   size:(int)size
               callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@%d%@%d", [ImageSDK url], @"/comment/", commentId, @"/links?start=", start, @"&size=", size];
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@%d%@%d", [LotusyConfig url], @"/comment/", commentId, @"/links?start=", start, @"&size=", size];
 
     LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
                                                                       method:@"GET"
@@ -51,7 +51,7 @@
                           size:(int)size
                       callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@%d%@%d", [ImageSDK url], @"/business/", businessId, @"/links?start=", start, @"&size=", size];
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@%d%@%d", [LotusyConfig url], @"/business/", businessId, @"/links?start=", start, @"&size=", size];
     
     LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
                                                                       method:@"GET"
@@ -77,7 +77,7 @@
                       size:(int)size
                   callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@%d%@%d", [ImageSDK url], @"/user/", userId, @"/comment/links?start=", start, @"&size=", size];
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@%d%@%d", [LotusyConfig url], @"/user/", userId, @"/comment/links?start=", start, @"&size=", size];
     
     LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
                                                                       method:@"GET"
@@ -102,7 +102,7 @@
                        file:(NSData*)file
                    callback:(void(^)(LotusyRESTResult*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult]); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d", [ImageSDK url], @"/comment/", commentId];
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d", [LotusyConfig url], @"/comment/", commentId];
 
     LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
                                                                       method:@"POST"
@@ -121,7 +121,7 @@
                                file:(NSData*)file
                            callback:(void(^)(LotusyRESTResult*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult]); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d", [ImageSDK url], @"/business/", businessId];
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d", [LotusyConfig url], @"/business/", businessId];
     
     LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
                                                                       method:@"POST"

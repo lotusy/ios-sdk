@@ -27,7 +27,7 @@
                  picture:(NSString*)picture
              description:(NSString*)description
                 callback:(void(^)(LotusyRESTResult*, LotusyToken*))callback {
-    NSString* uri = [NSString stringWithFormat:@"%@%@%@", [AccountSDK url], @"/register/", externalType];
+    NSString* uri = [NSString stringWithFormat:@"%@%@%@", [LotusyConfig url], @"/register/", externalType];
     NSMutableDictionary* body = [[NSMutableDictionary alloc]init];
     [LotusyUtility add2dict:body key:@"id" value:externalId];
     [LotusyUtility add2dict:body key:@"username" value:userName];
@@ -58,7 +58,7 @@
 + (void) login:(NSString*)externalType
     externalId:(NSString*)externalId
       callback:(void(^)(LotusyRESTResult*, LotusyToken*))callback {
-    NSString* uri = [NSString stringWithFormat:@"%@%@%@%@%@", [AccountSDK url], @"/auth/", externalType, @"/", externalId];
+    NSString* uri = [NSString stringWithFormat:@"%@%@%@%@%@", [LotusyConfig url], @"/auth/", externalType, @"/", externalId];
     LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
                                                                       method:@"GET"
                                                                      headers:LotusyConfig.defaultHeaders
@@ -98,7 +98,7 @@
 + (void) userProfile:(int)userId
             callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [AccountSDK url], @"/", userId, @"/profile"];
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [LotusyConfig url], @"/", userId, @"/profile"];
     LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
                                                                       method:@"GET"
                                                                      headers:LotusyConfig.defaultHeaders
