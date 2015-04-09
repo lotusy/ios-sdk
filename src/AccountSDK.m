@@ -79,7 +79,7 @@
 }
 
 
-+ (void) currentUserProfile:(void(^)(LotusyRESTResult*, LotusyUser*))callback {
++ (void) currentUserProfile:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
     NSString* uri = [NSString stringWithFormat:@"%@%@", AccountSDK.url, @"/profile"];
     LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
@@ -90,20 +90,13 @@
 
     LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
     [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
-        LotusyUser* user = nil;
-        
-        if (result.success) {
-            user = [LotusyUtility parseUser:response];
-            [LotusyUser assignCurrent:user];
-        }
-
-        callback(result, user);
+        callback(result, response);
     }];
 }
 
 
 + (void) userProfile:(int)userId
-            callback:(void(^)(LotusyRESTResult*, LotusyUser*))callback {
+            callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
     NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [AccountSDK url], @"/", userId, @"/profile"];
     LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
@@ -114,13 +107,7 @@
 
     LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
     [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
-        LotusyUser* user = nil;
-        
-        if (result.success) {
-            user = [LotusyUtility parseUser:response];
-        }
-        
-        callback(result, user);
+        callback(result, response);
     }];
 }
 
@@ -129,7 +116,7 @@
               nickName:(NSString*)nickName
                picture:(NSString*)picture
            description:(NSString*)description
-              callback:(void(^)(LotusyRESTResult*, LotusyUser*))callback {
+              callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
     NSString* uri = [NSString stringWithFormat:@"%@%@", AccountSDK.url, @"/profile"];
     NSMutableDictionary* body = [[NSMutableDictionary alloc]init];
@@ -146,14 +133,7 @@
 
     LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
     [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
-        LotusyUser* user = nil;
-        
-        if (result.success) {
-            user = [LotusyUtility parseUser:response];
-            [LotusyUser assignCurrent:user];
-        }
-        
-        callback(result, user);
+        callback(result, response);
     }];
 }
 

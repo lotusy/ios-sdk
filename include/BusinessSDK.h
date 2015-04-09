@@ -10,13 +10,11 @@
 #import "LotusyLatLng.h"
 #import "LotusyHours.h"
 #import "LotusyAddress.h"
-#import "LotusyBusiness.h"
-#import "LotusyRating.h"
 #import "LotusyRESTResult.h"
 
 @interface BusinessSDK : NSObject
 
-+ (void) createBusiness:(LotusyLatLng*)latlng
++ (void) createBusiness:(LotusyLatLng*)location
                  zhName:(NSString*)zhName
                  twName:(NSString*)twName
                  enName:(NSString*)enName
@@ -28,11 +26,11 @@
                  social:(NSString*)social
                   hours:(LotusyHours*)hours
                 address:(LotusyAddress*)address
-               callback:(void(^)(LotusyRESTResult*, LotusyBusiness*))callback;
+               callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
 
 
 + (void) businessProfile:(int)businessId
-                callback:(void(^)(LotusyRESTResult*, LotusyBusiness*))callback;
+                callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
 
 
 + (void) businessLocation:(LotusyLatLng*)latlng
@@ -40,7 +38,7 @@
                   isMiles:(BOOL)isMiles
                     start:(int)start
                      size:(int)size
-                 callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
+                 callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
 
 
 + (void) rateBusiness:(int)businessId
@@ -53,6 +51,6 @@
 
 + (void) userRating:(int)businessId
              userId:(int)userId
-           callback:(void(^)(LotusyRESTResult*, LotusyRating*))callback;
+           callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
 
 @end

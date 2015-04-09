@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "LotusyRESTResult.h"
 #import "LotusyToken.h"
-#import "LotusyUser.h"
 
 
 @interface AccountSDK : NSObject
@@ -28,17 +27,17 @@
       callback:(void(^)(LotusyRESTResult*, LotusyToken*))callback;
 
 
-+ (void) currentUserProfile:(void(^)(LotusyRESTResult*, LotusyUser*))callback;
++ (void) currentUserProfile:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
 
 
 + (void) userProfile:(int)userId
-            callback:(void(^)(LotusyRESTResult*, LotusyUser*))callback;
+            callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
 
 
 + (void) updateProfile:(NSString*)userName
               nickName:(NSString*)nickName
                picture:(NSString*)picture
            description:(NSString*)description
-              callback:(void(^)(LotusyRESTResult*, LotusyUser*))callback;
+              callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
 
 @end

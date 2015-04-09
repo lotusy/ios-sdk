@@ -21,13 +21,7 @@
 		834E33281988AFBE00A98DE1 /* LotusyConnectorParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 834E33261988AFBE00A98DE1 /* LotusyConnectorParam.m */; };
 		83B0F99C198A05F000C40D5B /* LotusyConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 83B0F99B198A05F000C40D5B /* LotusyConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		83B0F9A0198A081900C40D5B /* LotusyLatLng.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B0F99E198A081900C40D5B /* LotusyLatLng.m */; };
-		83B0F9A4198A082700C40D5B /* LotusyHours.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B0F9A2198A082700C40D5B /* LotusyHours.m */; };
-		83B0F9A8198A083500C40D5B /* LotusyAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B0F9A6198A083500C40D5B /* LotusyAddress.m */; };
-		83B0F9AC198A084100C40D5B /* LotusyRating.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B0F9AA198A084100C40D5B /* LotusyRating.m */; };
-		83B0F9B1198A089200C40D5B /* LotusyAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 83B0F9AD198A089100C40D5B /* LotusyAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		83B0F9B2198A089200C40D5B /* LotusyHours.h in Headers */ = {isa = PBXBuildFile; fileRef = 83B0F9AE198A089100C40D5B /* LotusyHours.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		83B0F9B3198A089200C40D5B /* LotusyLatLng.h in Headers */ = {isa = PBXBuildFile; fileRef = 83B0F9AF198A089100C40D5B /* LotusyLatLng.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		83B0F9B4198A089200C40D5B /* LotusyRating.h in Headers */ = {isa = PBXBuildFile; fileRef = 83B0F9B0198A089100C40D5B /* LotusyRating.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		83B0F9B8198A097F00C40D5B /* LotusyUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 83B0F9B6198A097F00C40D5B /* LotusyUtility.h */; };
 		83B0F9B9198A097F00C40D5B /* LotusyUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B0F9B7198A097F00C40D5B /* LotusyUtility.m */; };
 		83B3BC94198A034000EB5184 /* LotusyRESTResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B3BC93198A034000EB5184 /* LotusyRESTResult.m */; };
@@ -40,17 +34,13 @@
 		E89ADA5819880D5F001D76B9 /* LotusySDK-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = E89ADA5219880D5F001D76B9 /* LotusySDK-Prefix.pch */; };
 		E89ADA5919880D5F001D76B9 /* LotusyConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E89ADA5419880D5F001D76B9 /* LotusyConfig.m */; };
 		E89ADA5E19880E49001D76B9 /* LotusyToken.m in Sources */ = {isa = PBXBuildFile; fileRef = E89ADA5C19880E49001D76B9 /* LotusyToken.m */; };
-		E89ADA6219880E6C001D76B9 /* LotusyUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E89ADA6019880E6C001D76B9 /* LotusyUser.m */; };
-		E89ADA6619880EA3001D76B9 /* LotusyBusiness.m in Sources */ = {isa = PBXBuildFile; fileRef = E89ADA6419880EA3001D76B9 /* LotusyBusiness.m */; };
-		E89ADA6B19881250001D76B9 /* LotusyComment.m in Sources */ = {isa = PBXBuildFile; fileRef = E89ADA6919881250001D76B9 /* LotusyComment.m */; };
-		E89ADA6F1988125B001D76B9 /* LotusyReply.m in Sources */ = {isa = PBXBuildFile; fileRef = E89ADA6D1988125B001D76B9 /* LotusyReply.m */; };
-		E89ADA75198812A8001D76B9 /* LotusyBusiness.h in Headers */ = {isa = PBXBuildFile; fileRef = E89ADA70198812A8001D76B9 /* LotusyBusiness.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E89ADA76198812A8001D76B9 /* LotusyComment.h in Headers */ = {isa = PBXBuildFile; fileRef = E89ADA71198812A8001D76B9 /* LotusyComment.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E89ADA77198812A8001D76B9 /* LotusyReply.h in Headers */ = {isa = PBXBuildFile; fileRef = E89ADA72198812A8001D76B9 /* LotusyReply.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E89ADA78198812A8001D76B9 /* LotusyToken.h in Headers */ = {isa = PBXBuildFile; fileRef = E89ADA73198812A8001D76B9 /* LotusyToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E89ADA79198812A8001D76B9 /* LotusyUser.h in Headers */ = {isa = PBXBuildFile; fileRef = E89ADA74198812A8001D76B9 /* LotusyUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E8AB97341AC9D2140025FB51 /* PageSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = E8AB97331AC9D2140025FB51 /* PageSDK.h */; };
 		E8AB97361AC9D2230025FB51 /* PageSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = E8AB97351AC9D2230025FB51 /* PageSDK.m */; };
+		E8E76FF41AD6FFAF00F12CBD /* LotusyAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E76FF21AD6FFAF00F12CBD /* LotusyAddress.m */; };
+		E8E76FF51AD6FFAF00F12CBD /* LotusyHours.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E76FF31AD6FFAF00F12CBD /* LotusyHours.m */; };
+		E8E76FF81AD6FFBE00F12CBD /* LotusyAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = E8E76FF61AD6FFBE00F12CBD /* LotusyAddress.h */; };
+		E8E76FF91AD6FFBE00F12CBD /* LotusyHours.h in Headers */ = {isa = PBXBuildFile; fileRef = E8E76FF71AD6FFBE00F12CBD /* LotusyHours.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,13 +58,7 @@
 		834E33261988AFBE00A98DE1 /* LotusyConnectorParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LotusyConnectorParam.m; sourceTree = "<group>"; };
 		83B0F99B198A05F000C40D5B /* LotusyConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LotusyConfig.h; sourceTree = "<group>"; };
 		83B0F99E198A081900C40D5B /* LotusyLatLng.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LotusyLatLng.m; sourceTree = "<group>"; };
-		83B0F9A2198A082700C40D5B /* LotusyHours.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LotusyHours.m; sourceTree = "<group>"; };
-		83B0F9A6198A083500C40D5B /* LotusyAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LotusyAddress.m; sourceTree = "<group>"; };
-		83B0F9AA198A084100C40D5B /* LotusyRating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LotusyRating.m; sourceTree = "<group>"; };
-		83B0F9AD198A089100C40D5B /* LotusyAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LotusyAddress.h; sourceTree = "<group>"; };
-		83B0F9AE198A089100C40D5B /* LotusyHours.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LotusyHours.h; sourceTree = "<group>"; };
 		83B0F9AF198A089100C40D5B /* LotusyLatLng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LotusyLatLng.h; sourceTree = "<group>"; };
-		83B0F9B0198A089100C40D5B /* LotusyRating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LotusyRating.h; sourceTree = "<group>"; };
 		83B0F9B6198A097F00C40D5B /* LotusyUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LotusyUtility.h; sourceTree = "<group>"; };
 		83B0F9B7198A097F00C40D5B /* LotusyUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LotusyUtility.m; sourceTree = "<group>"; };
 		83B3BC93198A034000EB5184 /* LotusyRESTResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LotusyRESTResult.m; sourceTree = "<group>"; };
@@ -89,17 +73,13 @@
 		E89ADA5219880D5F001D76B9 /* LotusySDK-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LotusySDK-Prefix.pch"; sourceTree = "<group>"; };
 		E89ADA5419880D5F001D76B9 /* LotusyConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LotusyConfig.m; sourceTree = "<group>"; };
 		E89ADA5C19880E49001D76B9 /* LotusyToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LotusyToken.m; sourceTree = "<group>"; };
-		E89ADA6019880E6C001D76B9 /* LotusyUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LotusyUser.m; sourceTree = "<group>"; };
-		E89ADA6419880EA3001D76B9 /* LotusyBusiness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LotusyBusiness.m; sourceTree = "<group>"; };
-		E89ADA6919881250001D76B9 /* LotusyComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LotusyComment.m; sourceTree = "<group>"; };
-		E89ADA6D1988125B001D76B9 /* LotusyReply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LotusyReply.m; sourceTree = "<group>"; };
-		E89ADA70198812A8001D76B9 /* LotusyBusiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LotusyBusiness.h; sourceTree = "<group>"; };
-		E89ADA71198812A8001D76B9 /* LotusyComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LotusyComment.h; sourceTree = "<group>"; };
-		E89ADA72198812A8001D76B9 /* LotusyReply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LotusyReply.h; sourceTree = "<group>"; };
 		E89ADA73198812A8001D76B9 /* LotusyToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LotusyToken.h; sourceTree = "<group>"; };
-		E89ADA74198812A8001D76B9 /* LotusyUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LotusyUser.h; sourceTree = "<group>"; };
 		E8AB97331AC9D2140025FB51 /* PageSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageSDK.h; sourceTree = "<group>"; };
 		E8AB97351AC9D2230025FB51 /* PageSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageSDK.m; sourceTree = "<group>"; };
+		E8E76FF21AD6FFAF00F12CBD /* LotusyAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LotusyAddress.m; sourceTree = "<group>"; };
+		E8E76FF31AD6FFAF00F12CBD /* LotusyHours.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LotusyHours.m; sourceTree = "<group>"; };
+		E8E76FF61AD6FFBE00F12CBD /* LotusyAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LotusyAddress.h; sourceTree = "<group>"; };
+		E8E76FF71AD6FFBE00F12CBD /* LotusyHours.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LotusyHours.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +146,8 @@
 		E89ADA4C19880D5F001D76B9 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				E8E76FF61AD6FFBE00F12CBD /* LotusyAddress.h */,
+				E8E76FF71AD6FFBE00F12CBD /* LotusyHours.h */,
 				83B3BC97198A044D00EB5184 /* LotusySDK.h */,
 				83B0F99B198A05F000C40D5B /* LotusyConfig.h */,
 				83B3BC95198A034800EB5184 /* LotusyRESTResult.h */,
@@ -175,15 +157,8 @@
 				E817C7A61ACB164A00AD971C /* DishSDK.h */,
 				834E331B1988A6F200A98DE1 /* ImageSDK.h */,
 				E8AB97331AC9D2140025FB51 /* PageSDK.h */,
-				83B0F9AD198A089100C40D5B /* LotusyAddress.h */,
-				83B0F9AE198A089100C40D5B /* LotusyHours.h */,
-				83B0F9AF198A089100C40D5B /* LotusyLatLng.h */,
-				83B0F9B0198A089100C40D5B /* LotusyRating.h */,
-				E89ADA70198812A8001D76B9 /* LotusyBusiness.h */,
-				E89ADA71198812A8001D76B9 /* LotusyComment.h */,
-				E89ADA72198812A8001D76B9 /* LotusyReply.h */,
 				E89ADA73198812A8001D76B9 /* LotusyToken.h */,
-				E89ADA74198812A8001D76B9 /* LotusyUser.h */,
+				83B0F9AF198A089100C40D5B /* LotusyLatLng.h */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -217,15 +192,10 @@
 		E89ADA5A19880E35001D76B9 /* object */ = {
 			isa = PBXGroup;
 			children = (
+				E8E76FF21AD6FFAF00F12CBD /* LotusyAddress.m */,
+				E8E76FF31AD6FFAF00F12CBD /* LotusyHours.m */,
 				E89ADA5C19880E49001D76B9 /* LotusyToken.m */,
-				E89ADA6019880E6C001D76B9 /* LotusyUser.m */,
-				E89ADA6419880EA3001D76B9 /* LotusyBusiness.m */,
-				E89ADA6919881250001D76B9 /* LotusyComment.m */,
-				E89ADA6D1988125B001D76B9 /* LotusyReply.m */,
 				83B0F99E198A081900C40D5B /* LotusyLatLng.m */,
-				83B0F9A2198A082700C40D5B /* LotusyHours.m */,
-				83B0F9A6198A083500C40D5B /* LotusyAddress.m */,
-				83B0F9AA198A084100C40D5B /* LotusyRating.m */,
 			);
 			path = object;
 			sourceTree = "<group>";
@@ -237,27 +207,22 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E89ADA76198812A8001D76B9 /* LotusyComment.h in Headers */,
 				83B0F9B8198A097F00C40D5B /* LotusyUtility.h in Headers */,
 				834E33271988AFBE00A98DE1 /* LotusyConnectorParam.h in Headers */,
-				E89ADA77198812A8001D76B9 /* LotusyReply.h in Headers */,
 				834E331D1988A6F200A98DE1 /* BusinessSDK.h in Headers */,
+				E8E76FF91AD6FFBE00F12CBD /* LotusyHours.h in Headers */,
 				834E331C1988A6F200A98DE1 /* AccountSDK.h in Headers */,
 				E8AB97341AC9D2140025FB51 /* PageSDK.h in Headers */,
 				83B3BC98198A044D00EB5184 /* LotusySDK.h in Headers */,
 				834E331F1988A6F200A98DE1 /* ImageSDK.h in Headers */,
 				834E331E1988A6F200A98DE1 /* CommentSDK.h in Headers */,
 				83B0F99C198A05F000C40D5B /* LotusyConfig.h in Headers */,
-				83B0F9B2198A089200C40D5B /* LotusyHours.h in Headers */,
-				83B0F9B4198A089200C40D5B /* LotusyRating.h in Headers */,
 				E817C7A81ACB164A00AD971C /* DishSDK.h in Headers */,
-				83B0F9B1198A089200C40D5B /* LotusyAddress.h in Headers */,
 				83B0F9B3198A089200C40D5B /* LotusyLatLng.h in Headers */,
+				E8E76FF81AD6FFBE00F12CBD /* LotusyAddress.h in Headers */,
 				83B3BC96198A034800EB5184 /* LotusyRESTResult.h in Headers */,
-				E89ADA79198812A8001D76B9 /* LotusyUser.h in Headers */,
 				E89ADA78198812A8001D76B9 /* LotusyToken.h in Headers */,
 				834E33231988AFAA00A98DE1 /* LotusyConnector.h in Headers */,
-				E89ADA75198812A8001D76B9 /* LotusyBusiness.h in Headers */,
 				E89ADA5819880D5F001D76B9 /* LotusySDK-Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,25 +308,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83B0F9A8198A083500C40D5B /* LotusyAddress.m in Sources */,
+				E8E76FF41AD6FFAF00F12CBD /* LotusyAddress.m in Sources */,
 				834E33171988A6C100A98DE1 /* ImageSDK.m in Sources */,
 				E8AB97361AC9D2230025FB51 /* PageSDK.m in Sources */,
-				E89ADA6219880E6C001D76B9 /* LotusyUser.m in Sources */,
 				E89ADA5919880D5F001D76B9 /* LotusyConfig.m in Sources */,
 				83B0F9B9198A097F00C40D5B /* LotusyUtility.m in Sources */,
 				E817C7AB1ACB166C00AD971C /* DishSDK.m in Sources */,
 				83B3BC94198A034000EB5184 /* LotusyRESTResult.m in Sources */,
-				E89ADA6F1988125B001D76B9 /* LotusyReply.m in Sources */,
 				834E330B1988A68E00A98DE1 /* AccountSDK.m in Sources */,
-				83B0F9AC198A084100C40D5B /* LotusyRating.m in Sources */,
+				E8E76FF51AD6FFAF00F12CBD /* LotusyHours.m in Sources */,
 				E89ADA5E19880E49001D76B9 /* LotusyToken.m in Sources */,
-				E89ADA6619880EA3001D76B9 /* LotusyBusiness.m in Sources */,
-				83B0F9A4198A082700C40D5B /* LotusyHours.m in Sources */,
 				834E33131988A6B100A98DE1 /* CommentSDK.m in Sources */,
 				83B0F9A0198A081900C40D5B /* LotusyLatLng.m in Sources */,
 				834E330F1988A6A500A98DE1 /* BusinessSDK.m in Sources */,
 				834E33281988AFBE00A98DE1 /* LotusyConnectorParam.m in Sources */,
-				E89ADA6B19881250001D76B9 /* LotusyComment.m in Sources */,
 				834E33241988AFAA00A98DE1 /* LotusyConnector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

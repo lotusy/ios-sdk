@@ -10,7 +10,7 @@
 #import "LotusyConfig.h"
 #import "LotusyConnectorParam.h"
 #import "LotusyConnector.h"
-#import "LotusyUser.h"
+#import "LotusyToken.h"
 
 @implementation PageSDK
 
@@ -144,7 +144,7 @@
 
 
 + (void) UC004_getBuddiesActivities:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [LotusyConfig url], @"/flow/user/", [LotusyUser current].userId , @"/activities"];
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [LotusyConfig url], @"/flow/user/", [LotusyToken current].userId , @"/activities"];
 
     LotusyConnectorParam* param = [self getDefaultParam:uri];
     
