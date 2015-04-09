@@ -15,17 +15,14 @@
 		834E331D1988A6F200A98DE1 /* BusinessSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 834E33191988A6F200A98DE1 /* BusinessSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		834E331E1988A6F200A98DE1 /* CommentSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 834E331A1988A6F200A98DE1 /* CommentSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		834E331F1988A6F200A98DE1 /* ImageSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 834E331B1988A6F200A98DE1 /* ImageSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		834E33231988AFAA00A98DE1 /* LotusyConnector.h in Headers */ = {isa = PBXBuildFile; fileRef = 834E33211988AFAA00A98DE1 /* LotusyConnector.h */; };
+		834E33231988AFAA00A98DE1 /* LotusyConnector.h in Headers */ = {isa = PBXBuildFile; fileRef = 834E33211988AFAA00A98DE1 /* LotusyConnector.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		834E33241988AFAA00A98DE1 /* LotusyConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 834E33221988AFAA00A98DE1 /* LotusyConnector.m */; };
 		834E33271988AFBE00A98DE1 /* LotusyConnectorParam.h in Headers */ = {isa = PBXBuildFile; fileRef = 834E33251988AFBE00A98DE1 /* LotusyConnectorParam.h */; };
 		834E33281988AFBE00A98DE1 /* LotusyConnectorParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 834E33261988AFBE00A98DE1 /* LotusyConnectorParam.m */; };
 		83B0F99C198A05F000C40D5B /* LotusyConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 83B0F99B198A05F000C40D5B /* LotusyConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		83B0F9A0198A081900C40D5B /* LotusyLatLng.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B0F99E198A081900C40D5B /* LotusyLatLng.m */; };
-		83B0F9A4198A082700C40D5B /* LotusyHours.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B0F9A2198A082700C40D5B /* LotusyHours.m */; };
-		83B0F9A8198A083500C40D5B /* LotusyAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B0F9A6198A083500C40D5B /* LotusyAddress.m */; };
-		83B0F9AC198A084100C40D5B /* LotusyRating.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B0F9AA198A084100C40D5B /* LotusyRating.m */; };
-		83B0F9B1198A089200C40D5B /* LotusyAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 83B0F9AD198A089100C40D5B /* LotusyAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		83B0F9B2198A089200C40D5B /* LotusyHours.h in Headers */ = {isa = PBXBuildFile; fileRef = 83B0F9AE198A089100C40D5B /* LotusyHours.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83B0F9B1198A089200C40D5B /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
+		83B0F9B2198A089200C40D5B /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
 		83B0F9B3198A089200C40D5B /* LotusyLatLng.h in Headers */ = {isa = PBXBuildFile; fileRef = 83B0F9AF198A089100C40D5B /* LotusyLatLng.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		83B0F9B8198A097F00C40D5B /* LotusyUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 83B0F9B6198A097F00C40D5B /* LotusyUtility.h */; };
 		83B0F9B9198A097F00C40D5B /* LotusyUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B0F9B7198A097F00C40D5B /* LotusyUtility.m */; };
@@ -40,13 +37,12 @@
 		E89ADA5919880D5F001D76B9 /* LotusyConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E89ADA5419880D5F001D76B9 /* LotusyConfig.m */; };
 		E89ADA5E19880E49001D76B9 /* LotusyToken.m in Sources */ = {isa = PBXBuildFile; fileRef = E89ADA5C19880E49001D76B9 /* LotusyToken.m */; };
 		E89ADA78198812A8001D76B9 /* LotusyToken.h in Headers */ = {isa = PBXBuildFile; fileRef = E89ADA73198812A8001D76B9 /* LotusyToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E89ADA79198812A8001D76B9 /* LotusyUser.h in Headers */ = {isa = PBXBuildFile; fileRef = E89ADA74198812A8001D76B9 /* LotusyUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E8AB97341AC9D2140025FB51 /* PageSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = E8AB97331AC9D2140025FB51 /* PageSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E8AB97361AC9D2230025FB51 /* PageSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = E8AB97351AC9D2230025FB51 /* PageSDK.m */; };
 		E8E76FF41AD6FFAF00F12CBD /* LotusyAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E76FF21AD6FFAF00F12CBD /* LotusyAddress.m */; };
 		E8E76FF51AD6FFAF00F12CBD /* LotusyHours.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E76FF31AD6FFAF00F12CBD /* LotusyHours.m */; };
-		E8E76FF81AD6FFBE00F12CBD /* LotusyAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = E8E76FF61AD6FFBE00F12CBD /* LotusyAddress.h */; };
-		E8E76FF91AD6FFBE00F12CBD /* LotusyHours.h in Headers */ = {isa = PBXBuildFile; fileRef = E8E76FF71AD6FFBE00F12CBD /* LotusyHours.h */; };
+		E8E76FF81AD6FFBE00F12CBD /* LotusyAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = E8E76FF61AD6FFBE00F12CBD /* LotusyAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E8E76FF91AD6FFBE00F12CBD /* LotusyHours.h in Headers */ = {isa = PBXBuildFile; fileRef = E8E76FF71AD6FFBE00F12CBD /* LotusyHours.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -216,23 +212,21 @@
 				83B0F9B8198A097F00C40D5B /* LotusyUtility.h in Headers */,
 				834E33271988AFBE00A98DE1 /* LotusyConnectorParam.h in Headers */,
 				E817C7A81ACB164A00AD971C /* DishSDK.h in Headers */,
-				E89ADA77198812A8001D76B9 /* LotusyReply.h in Headers */,
 				834E331D1988A6F200A98DE1 /* BusinessSDK.h in Headers */,
-				E8E76FF91AD6FFBE00F12CBD /* LotusyHours.h in Headers */,
 				834E331C1988A6F200A98DE1 /* AccountSDK.h in Headers */,
 				83B3BC98198A044D00EB5184 /* LotusySDK.h in Headers */,
+				E8E76FF91AD6FFBE00F12CBD /* LotusyHours.h in Headers */,
+				E8E76FF81AD6FFBE00F12CBD /* LotusyAddress.h in Headers */,
+				834E33231988AFAA00A98DE1 /* LotusyConnector.h in Headers */,
 				834E331F1988A6F200A98DE1 /* ImageSDK.h in Headers */,
+				83B0F9B3198A089200C40D5B /* LotusyLatLng.h in Headers */,
+				E89ADA78198812A8001D76B9 /* LotusyToken.h in Headers */,
+				E8AB97341AC9D2140025FB51 /* PageSDK.h in Headers */,
+				83B3BC96198A034800EB5184 /* LotusyRESTResult.h in Headers */,
 				834E331E1988A6F200A98DE1 /* CommentSDK.h in Headers */,
 				83B0F99C198A05F000C40D5B /* LotusyConfig.h in Headers */,
-				83B0F9B2198A089200C40D5B /* LotusyHours.h in Headers */,
-				83B0F9B4198A089200C40D5B /* LotusyRating.h in Headers */,
-				E8AB97341AC9D2140025FB51 /* PageSDK.h in Headers */,
-				83B0F9B1198A089200C40D5B /* LotusyAddress.h in Headers */,
-				83B0F9B3198A089200C40D5B /* LotusyLatLng.h in Headers */,
-				E8E76FF81AD6FFBE00F12CBD /* LotusyAddress.h in Headers */,
-				83B3BC96198A034800EB5184 /* LotusyRESTResult.h in Headers */,
-				E89ADA78198812A8001D76B9 /* LotusyToken.h in Headers */,
-				834E33231988AFAA00A98DE1 /* LotusyConnector.h in Headers */,
+				83B0F9B2198A089200C40D5B /* (null) in Headers */,
+				83B0F9B1198A089200C40D5B /* (null) in Headers */,
 				E89ADA5819880D5F001D76B9 /* LotusySDK-Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
