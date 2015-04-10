@@ -27,6 +27,9 @@
       callback:(void(^)(LotusyRESTResult*, LotusyToken*))callback;
 
 
++ (void) logout:(void(^)(LotusyRESTResult*))callback;
+
+
 + (void) currentUserProfile:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
 
 
@@ -40,4 +43,49 @@
            description:(NSString*)description
               callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
 
+
++ (void) getUserFollowings:(int)userId
+                     start:(int)start
+                      size:(int)size
+                  callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
+
+
++ (void) getUserFollowers:(int)userId
+                    start:(int)start
+                     size:(int)size
+                 callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
+
+
++ (void) getUserCollection:(int)userId
+                     start:(int)start
+                      size:(int)size
+                  callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
+
+
++ (void) getUserHitlist:(int)userId
+                  start:(int)start
+                   size:(int)size
+               callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
+
+
++ (void) getUserActivities:(int)userId
+                     start:(int)start
+                      size:(int)size
+                  callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
+
+
++ (void) buddyUser:(int)userId
+          callback:(void(^)(LotusyRESTResult*))callback;
+
+
++ (void) unBuddyUser:(int)userId
+            callback:(void(^)(LotusyRESTResult*))callback;
+
+
++ (void) unBuddyUser:(int)userId
+            callback:(void(^)(LotusyRESTResult*))callback;
+
+
++ (void) updateUserAlert:(NSString*)alertCode
+                   isAdd:(BOOL)isAdd;
 @end

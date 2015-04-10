@@ -79,9 +79,16 @@
 }
 
 
++ (void) logout:(void(^)(LotusyRESTResult*))callback {
+    [LotusyToken assignCurrent:nil];
+    LotusyRESTResult *result = [[LotusyRESTResult alloc]initWithParam:YES statusCode:0];
+    callback(result);
+}
+
+
 + (void) currentUserProfile:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@", AccountSDK.url, @"/profile"];
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", AccountSDK.url, @"/user/", [LotusyToken current].userId ,@"/profile"];
     LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
                                                                       method:@"GET"
                                                                      headers:LotusyConfig.defaultHeaders
@@ -98,7 +105,7 @@
 + (void) userProfile:(int)userId
             callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [LotusyConfig url], @"/", userId, @"/profile"];
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [LotusyConfig url], @"/user/", userId, @"/profile"];
     LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
                                                                       method:@"GET"
                                                                      headers:LotusyConfig.defaultHeaders
@@ -118,7 +125,7 @@
            description:(NSString*)description
               callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@", AccountSDK.url, @"/profile"];
+    NSString* uri = [NSString stringWithFormat:@"%@%@", AccountSDK.url, @"/user/profile"];
     NSMutableDictionary* body = [[NSMutableDictionary alloc]init];
     [LotusyUtility add2dict:body key:@"username" value:userName];
     [LotusyUtility add2dict:body key:@"nickname" value:nickName];
@@ -135,6 +142,70 @@
     [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
         callback(result, response);
     }];
+}
+
+
++ (void) getUserFollowings:(int)userId
+                     start:(int)start
+                      size:(int)size
+                  callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
+    
+}
+
+
++ (void) getUserFollowers:(int)userId
+                    start:(int)start
+                     size:(int)size
+                 callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
+    
+}
+
+
++ (void) getUserCollection:(int)userId
+                     start:(int)start
+                      size:(int)size
+                  callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
+    
+}
+
+
++ (void) getUserHitlist:(int)userId
+                  start:(int)start
+                   size:(int)size
+               callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
+    
+}
+
+
++ (void) getUserActivities:(int)userId
+                     start:(int)start
+                      size:(int)size
+                  callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
+    
+}
+
+
++ (void) buddyUser:(int)userId
+          callback:(void(^)(LotusyRESTResult*))callback {
+    
+}
+
+
++ (void) unBuddyUser:(int)userId
+            callback:(void(^)(LotusyRESTResult*))callback {
+    
+}
+
+
++ (void) unBuddyUser:(int)userId
+            callback:(void(^)(LotusyRESTResult*))callback {
+    
+}
+
+
++ (void) updateUserAlert:(NSString*)alertCode
+                   isAdd:(BOOL)isAdd {
+    
 }
 
 #pragma - pubilc / private
