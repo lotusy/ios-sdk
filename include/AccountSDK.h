@@ -82,10 +82,6 @@
             callback:(void(^)(LotusyRESTResult*))callback;
 
 
-+ (void) unBuddyUser:(int)userId
-            callback:(void(^)(LotusyRESTResult*))callback;
-
-
 + (void) updateUserAlert:(NSString*)alertCode
                    isAdd:(BOOL)isAdd;
 @end
