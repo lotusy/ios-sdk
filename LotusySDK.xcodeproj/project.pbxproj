@@ -225,8 +225,6 @@
 				83B3BC96198A034800EB5184 /* LotusyRESTResult.h in Headers */,
 				834E331E1988A6F200A98DE1 /* CommentSDK.h in Headers */,
 				83B0F99C198A05F000C40D5B /* LotusyConfig.h in Headers */,
-				83B0F9B2198A089200C40D5B /* (null) in Headers */,
-				83B0F9B1198A089200C40D5B /* (null) in Headers */,
 				E89ADA5819880D5F001D76B9 /* LotusySDK-Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
