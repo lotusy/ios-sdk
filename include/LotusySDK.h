@@ -20,14 +20,9 @@
 #import <LotusySDK/ImageSDK.h>
 #import <LotusySDK/PageSDK.h>
 
-#import <LotusySDK/LotusyBusiness.h>
-#import <LotusySDK/LotusyComment.h>
-#import <LotusySDK/LotusyReply.h>
 #import <LotusySDK/LotusyToken.h>
-#import <LotusySDK/LotusyUser.h>
 #import <LotusySDK/LotusyLatLng.h>
 #import <LotusySDK/LotusyHours.h>
 #import <LotusySDK/LotusyAddress.h>
-#import <LotusySDK/LotusyRating.h>
 
 #endif
