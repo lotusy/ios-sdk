@@ -22,6 +22,7 @@
 
 + (void) createComment:(LotusyLatLng*)latlng
             businessId:(int)businessId
+                dishId:(int)dishId
                message:(NSString*)message
               callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
@@ -29,6 +30,7 @@
     NSDictionary* body = @{ @"lat" : [[NSNumber alloc]initWithDouble:latlng.lat],
                             @"lng" : [[NSNumber alloc]initWithDouble:latlng.lng],
                             @"business_id" : [[NSNumber alloc]initWithInt:businessId],
+                            @"dish_id" : [[NSNumber alloc]initWithInt:dishId],
                             @"message" : message
                            };
     
@@ -43,26 +45,6 @@
         callback(result, response);
     }];
 }
-
-
-+ (void) comment:(int)commentId
-        callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
-    if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
-
-    NSString* uri = [NSString stringWithFormat:@"%@%d", @"/comment/", commentId];
-
-    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
-                                                                      method:@"POST"
-                                                                     headers:LotusyConfig.defaultHeaders
-                                                                        body:nil
-                                                                        file:nil];
-
-    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
-    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
-        callback(result, response);
-    }];
-}
-
 
 + (void) deleteComment:(int)commentId
               callback:(void(^)(LotusyRESTResult*))callback {
@@ -82,91 +64,11 @@
     }];
 }
 
-
-+ (void) likeComment:(int)commentId
-            callback:(void(^)(LotusyRESTResult*))callback {
-    if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult]); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [CommentSDK url], @"/comment/", commentId, @"/like"];
++ (void) dishComment:(int)dishId
+               start:(int)start
+                size:(int)size
+            callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
     
-    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
-                                                                      method:@"PUT"
-                                                                     headers:LotusyConfig.defaultHeaders
-                                                                        body:nil
-                                                                        file:nil];
-    
-    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
-    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
-        callback(result);
-    }];
-}
-
-
-+ (void) dislikeComment:(int)commentId
-               callback:(void(^)(LotusyRESTResult*))callback {
-    if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult]); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [CommentSDK url], @"/comment/", commentId, @"/dislike"];
-
-    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
-                                                                      method:@"PUT"
-                                                                     headers:LotusyConfig.defaultHeaders
-                                                                        body:nil
-                                                                        file:nil];
-    
-    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
-    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
-        callback(result);
-    }];
-}
-
-+ (void) userComments:(int)userId
-                start:(int)start
-                 size:(int)size
-             callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
-    if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@%d%@%d", [CommentSDK url], @"/user/", userId, @"comments?start=", start, @"&size=", size];
-
-    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
-                                                                      method:@"GET"
-                                                                     headers:LotusyConfig.defaultHeaders
-                                                                        body:nil
-                                                                        file:nil];
-
-    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
-    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
-        NSArray* comments = nil;
-
-        if (result.success) {
-            comments = [response objectForKey:@"comments"];
-        }
-
-        callback(result, comments);
-    }];
-}
-
-
-+ (void) businessComments:(int)businessId
-                    start:(int)start
-                     size:(int)size
-                 callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
-    if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@%d%@%d", [CommentSDK url], @"/business/", businessId, @"comments?start=", start, @"&size=", size];
-    
-    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
-                                                                      method:@"GET"
-                                                                     headers:LotusyConfig.defaultHeaders
-                                                                        body:nil
-                                                                        file:nil];
-    
-    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
-    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
-        NSArray* comments = nil;
-        
-        if (result.success) {
-            comments = [response objectForKey:@"comments"];
-        }
-        
-        callback(result, comments);
-    }];
 }
 
 #pragma - pubilc / private

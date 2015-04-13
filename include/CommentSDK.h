@@ -15,29 +15,16 @@
 
 + (void) createComment:(LotusyLatLng*)latlng
             businessId:(int)businessId
+                dishId:(int)dishId
                message:(NSString*)message
               callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
-
-+ (void) comment:(int)commentId
-        callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
 
 + (void) deleteComment:(int)commentId
               callback:(void(^)(LotusyRESTResult*))callback;
 
-+ (void) likeComment:(int)commentId
-            callback:(void(^)(LotusyRESTResult*))callback;
-
-+ (void) dislikeComment:(int)commentId
-               callback:(void(^)(LotusyRESTResult*))callback;
-
-+ (void) userComments:(int)userId
-                start:(int)start
-                 size:(int)size
-             callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
-
-+ (void) businessComments:(int)businessId
-                    start:(int)start
-                     size:(int)size
-                 callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
++ (void) dishComment:(int)dishId
+               start:(int)start
+                size:(int)size
+            callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
 
 @end

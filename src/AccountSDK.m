@@ -145,31 +145,7 @@
 }
 
 
-+ (void) getUserFollowings:(int)userId
-                     start:(int)start
-                      size:(int)size
-                  callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
-    
-}
-
-
-+ (void) getUserFollowers:(int)userId
-                    start:(int)start
-                     size:(int)size
-                 callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
-    
-}
-
-
-+ (void) getUserCollection:(int)userId
-                     start:(int)start
-                      size:(int)size
-                  callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
-    
-}
-
-
-+ (void) getUserHitlist:(int)userId
++ (void) userFollowings:(int)userId
                   start:(int)start
                    size:(int)size
                callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
@@ -177,10 +153,34 @@
 }
 
 
-+ (void) getUserActivities:(int)userId
-                     start:(int)start
-                      size:(int)size
-                  callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
++ (void) userFollowers:(int)userId
+                 start:(int)start
+                  size:(int)size
+              callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
+    
+}
+
+
++ (void) userCollection:(int)userId
+                  start:(int)start
+                   size:(int)size
+               callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
+    
+}
+
+
++ (void) userHitlist:(int)userId
+               start:(int)start
+                size:(int)size
+            callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
+    
+}
+
+
++ (void) userActivities:(int)userId
+                  start:(int)start
+                   size:(int)size
+               callback:(void(^)(LotusyRESTResult*, NSArray*))callback; {
     
 }
 

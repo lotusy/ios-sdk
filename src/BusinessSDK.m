@@ -25,6 +25,7 @@
                  twName:(NSString*)twName
                  enName:(NSString*)enName
                   price:(NSString*)price
+               category:(NSString*)category
                cashOnly:(BOOL)cashOnly
                verified:(BOOL)verified
                   phone:(NSString*)phone
@@ -63,6 +64,7 @@
     if (cashOnly) { cashOnlyStr = @"Y"; }
     NSString* verifiedStr = @"N";
     if (verified) { verifiedStr = @"Y"; }
+    [LotusyUtility add2dict:body key:@"category" value:category];
     [LotusyUtility add2dict:body key:@"name_zh" value:zhName];
     [LotusyUtility add2dict:body key:@"name_tw" value:twName];
     [LotusyUtility add2dict:body key:@"name_en" value:enName];
@@ -77,6 +79,37 @@
                                                                         body:body
                                                                         file:nil];
     
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        callback(result, response);
+    }];
+}
+
+
++ (void) createSimpleBusiness:(LotusyLatLng*)location
+                       zhName:(NSString*)zhName
+                       twName:(NSString*)twName
+                       enName:(NSString*)enName
+                     category:(NSString*)category
+                     callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
+    if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
+    NSString* uri = [NSString stringWithFormat:@"%@%@", [LotusyConfig url], @"/business/quick" ];
+    NSMutableDictionary* body = [[NSMutableDictionary alloc]init];
+    if (location!=nil) {
+        [body setObject:[[NSNumber alloc] initWithDouble:location.lat] forKey:@"lat"];
+        [body setObject:[[NSNumber alloc] initWithDouble:location.lng] forKey:@"lng"];
+    }
+    [LotusyUtility add2dict:body key:@"category" value:category];
+    [LotusyUtility add2dict:body key:@"name_zh" value:zhName];
+    [LotusyUtility add2dict:body key:@"name_tw" value:twName];
+    [LotusyUtility add2dict:body key:@"name_en" value:enName];
+
+    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
+                                                                      method:@"POST"
+                                                                     headers:LotusyConfig.defaultHeaders
+                                                                        body:body
+                                                                        file:nil];
+
     LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
     [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
         callback(result, response);
@@ -139,50 +172,11 @@
 }
 
 
-+ (void) rateBusiness:(int)businessId
-              overall:(double)overall
-                 food:(double)food
-          environment:(double)environment
-              service:(double)service
-             callback:(void(^)(LotusyRESTResult*))callback {
-    if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult]); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", [LotusyConfig url], @"/", businessId, @"/rate"];
-    NSDictionary* body = @{ @"overall" : [[NSNumber alloc]initWithDouble:overall],
-                            @"food" : [[NSNumber alloc]initWithDouble:food],
-                            @"env" : [[NSNumber alloc]initWithDouble:environment],
-                            @"serv" : [[NSNumber alloc]initWithDouble:service]
-                           };
-
-    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
-                                                                      method:@"POST"
-                                                                     headers:LotusyConfig.defaultHeaders
-                                                                        body:body
-                                                                        file:nil];
-
-    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
-    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
-        callback(result);
-    }];
++ (void) businessNameSearch:(NSString*)name
+                   callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
+    
 }
 
-
-+ (void) userRating:(int)businessId
-             userId:(int)userId
-           callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
-    if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@%d%@", [LotusyConfig url], @"/business/", businessId, @"/user/", userId, @"/rating"];
-
-    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
-                                                                      method:@"GET"
-                                                                     headers:LotusyConfig.defaultHeaders
-                                                                        body:nil
-                                                                        file:nil];
-
-    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
-    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
-        callback(result, response);
-    }];
-}
 
 #pragma - pubilc / private
 

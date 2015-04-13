@@ -19,6 +19,7 @@
                  twName:(NSString*)twName
                  enName:(NSString*)enName
                   price:(NSString*)price
+               category:(NSString*)category
                cashOnly:(BOOL)cashOnly
                verified:(BOOL)verified
                   phone:(NSString*)phone
@@ -27,6 +28,14 @@
                   hours:(LotusyHours*)hours
                 address:(LotusyAddress*)address
                callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
+
+
++ (void) createSimpleBusiness:(LotusyLatLng*)location
+                       zhName:(NSString*)zhName
+                       twName:(NSString*)twName
+                       enName:(NSString*)enName
+                     category:(NSString*)category
+                     callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
 
 
 + (void) businessProfile:(int)businessId
@@ -41,16 +50,7 @@
                  callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
 
 
-+ (void) rateBusiness:(int)businessId
-              overall:(double)overall
-                 food:(double)food
-          environment:(double)environment
-              service:(double)service
-             callback:(void(^)(LotusyRESTResult*))callback;
-
-
-+ (void) userRating:(int)businessId
-             userId:(int)userId
-           callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback;
++ (void) businessNameSearch:(NSString*)name
+                   callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
 
 @end
