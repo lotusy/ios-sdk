@@ -13,19 +13,33 @@
 #import "LotusyConnectorParam.h"
 #import "LotusyConnector.h"
 
-@interface ImageSDK()
-
-@end
-
 
 @implementation ImageSDK
 
-+ (void) commentImages:(int)commentId
-                 start:(int)start
-                  size:(int)size
-              callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
++ (void) uploadDishImage:(int)dishId
+                    file:(NSData*)file
+                callback:(void(^)(LotusyRESTResult*))callback {
+    if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult]); }
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d", [LotusyConfig url], @"/image/dish/", dishId];
+    
+    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
+                                                                      method:@"POST"
+                                                                     headers:LotusyConfig.defaultHeaders
+                                                                        body:nil
+                                                                        file:file];
+    
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        callback(result);
+    }];
+}
+
++ (void) dishImages:(int)dishId
+              start:(int)start
+               size:(int)size
+           callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@%d%@%d", [LotusyConfig url], @"/comment/", commentId, @"/links?start=", start, @"&size=", size];
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@%d%@%d", [LotusyConfig url], @"/image/dish/", dishId, @"profile/links?start=", start, @"&size=", size];
 
     LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
                                                                       method:@"GET"
@@ -44,114 +58,6 @@
         callback(result, imageUrls);
     }];
 }
-
-
-+ (void) businessCommentImages:(int)businessId
-                         start:(int)start
-                          size:(int)size
-                      callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
-    if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@%d%@%d", [LotusyConfig url], @"/business/", businessId, @"/links?start=", start, @"&size=", size];
-    
-    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
-                                                                      method:@"GET"
-                                                                     headers:LotusyConfig.defaultHeaders
-                                                                        body:nil
-                                                                        file:nil];
-    
-    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
-    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
-        NSArray* imageUrls = nil;
-        
-        if (result.success) {
-            imageUrls = [response objectForKey:@"links"];
-        }
-        
-        callback(result, imageUrls);
-    }];
-}
-
-
-+ (void) userCommentImages:(int)userId
-                     start:(int)start
-                      size:(int)size
-                  callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
-    if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@%d%@%d", [LotusyConfig url], @"/user/", userId, @"/comment/links?start=", start, @"&size=", size];
-    
-    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
-                                                                      method:@"GET"
-                                                                     headers:LotusyConfig.defaultHeaders
-                                                                        body:nil
-                                                                        file:nil];
-    
-    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
-    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
-        NSArray* imageUrls = nil;
-        
-        if (result.success) {
-            imageUrls = [response objectForKey:@"links"];
-        }
-        
-        callback(result, imageUrls);
-    }];
-}
-
-
-+ (void) uploadCommentImage:(int)commentId
-                       file:(NSData*)file
-                   callback:(void(^)(LotusyRESTResult*))callback {
-    if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult]); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d", [LotusyConfig url], @"/comment/", commentId];
-
-    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
-                                                                      method:@"POST"
-                                                                     headers:LotusyConfig.defaultHeaders
-                                                                        body:nil
-                                                                        file:file];
-
-    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
-    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
-        callback(result);
-    }];
-}
-
-
-+ (void) uploadBusinessProfileImage:(int)businessId
-                               file:(NSData*)file
-                           callback:(void(^)(LotusyRESTResult*))callback {
-    if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult]); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d", [LotusyConfig url], @"/business/", businessId];
-    
-    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
-                                                                      method:@"POST"
-                                                                     headers:LotusyConfig.defaultHeaders
-                                                                        body:nil
-                                                                        file:file];
-
-    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
-    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
-        callback(result);
-    }];
-}
-
-
-+ (void) uploadUserProfileImage:(NSData*)file
-                       callback:(void(^)(LotusyRESTResult*))callback {
-    if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult]); }
-
-    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:@"/user"
-                                                                      method:@"POST"
-                                                                     headers:LotusyConfig.defaultHeaders
-                                                                        body:nil
-                                                                        file:file];
-    
-    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
-    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
-        callback(result);
-    }];
-}
-
 
 #pragma - pubilc / private
 

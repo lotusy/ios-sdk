@@ -11,30 +11,40 @@
 
 @interface ImageSDK : NSObject
 
-+ (void) commentImages:(int)commentId
-                 start:(int)start
-                  size:(int)size
-              callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
 
-+ (void) businessCommentImages:(int)businessId
-                         start:(int)start
-                          size:(int)size
-                      callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
++ (void) uploadDishImage:(int)dishId
+                    file:(NSData*)file
+                callback:(void(^)(LotusyRESTResult*))callback;
 
-+ (void) userCommentImages:(int)userId
-                     start:(int)start
-                      size:(int)size
-                  callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
 
-+ (void) uploadCommentImage:(int)commentId
-                       file:(NSData*)file
-                   callback:(void(^)(LotusyRESTResult*))callback;
++ (void) dishImages:(int)dishId
+              start:(int)start
+               size:(int)size
+           callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
 
-+ (void) uploadBusinessProfileImage:(int)businessId
-                               file:(NSData*)file
-                           callback:(void(^)(LotusyRESTResult*))callback;
 
-+ (void) uploadUserProfileImage:(NSData*)file
-                       callback:(void(^)(LotusyRESTResult*))callback;
++ (void) uploadSignatureImage:(int)dishId
+                         file:(NSData*)file
+                     callback:(void(^)(LotusyRESTResult*))callback;
+
+
++ (void) userSignatureImages:(int)dishId
+                       start:(int)start
+                        size:(int)size
+                    callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
+
+
++ (void) deleteUserSignature:(int)signatureId
+                    callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
+
+
++ (void) uploadUserImage:(NSData*)file
+                callback:(void(^)(LotusyRESTResult*))callback;
+
+
++ (void) uploadBusinessImage:(int)businessId
+                        file:(NSData*)file
+                    callback:(void(^)(LotusyRESTResult*))callback;
+
 
 @end
