@@ -198,7 +198,8 @@
 
 
 + (void) updateUserAlert:(NSString*)alertCode
-                   isAdd:(BOOL)isAdd {
+                   isAdd:(BOOL)isAdd
+                callback:(void(^)(LotusyRESTResult*))callback {
     
 }
 
