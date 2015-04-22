@@ -56,16 +56,16 @@
               callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
 
 
-+ (void) userCollection:(int)userId
-                  start:(int)start
-                   size:(int)size
-               callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
++ (void) userCollections:(int)userId
+                   start:(int)start
+                    size:(int)size
+                callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
 
 
-+ (void) userHitlist:(int)userId
-               start:(int)start
-                size:(int)size
-            callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
++ (void) userHitlists:(int)userId
+                start:(int)start
+                 size:(int)size
+             callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
 
 
 + (void) userActivities:(int)userId

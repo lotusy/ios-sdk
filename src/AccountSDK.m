@@ -133,7 +133,7 @@
     [LotusyUtility add2dict:body key:@"description" value:description];
 
     LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
-                                                                      method:@"PUT"
+                                                                      method:@"POST"
                                                                      headers:LotusyConfig.defaultHeaders
                                                                         body:body
                                                                         file:nil];
@@ -149,7 +149,22 @@
                   start:(int)start
                    size:(int)size
                callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
+    if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@%d%@%d", [LotusyConfig url], @"/user/", userId, @"/followings?start=", start, @"&size=", size];
+    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
+                                                                      method:@"GET"
+                                                                     headers:LotusyConfig.defaultHeaders
+                                                                        body:nil
+                                                                        file:nil];
     
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        NSArray *users = nil;
+        if (result.success) {
+            users = [response objectForKey:@"users"];
+        }
+        callback(result, users);
+    }];
 }
 
 
@@ -157,23 +172,68 @@
                  start:(int)start
                   size:(int)size
               callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
+    if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@%d%@%d", [LotusyConfig url], @"/user/", userId, @"/followers?start=", start, @"&size=", size];
+    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
+                                                                      method:@"GET"
+                                                                     headers:LotusyConfig.defaultHeaders
+                                                                        body:nil
+                                                                        file:nil];
     
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        NSArray *users = nil;
+        if (result.success) {
+            users = [response objectForKey:@"users"];
+        }
+        callback(result, users);
+    }];
 }
 
 
-+ (void) userCollection:(int)userId
-                  start:(int)start
-                   size:(int)size
-               callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
++ (void) userCollections:(int)userId
+                   start:(int)start
+                    size:(int)size
+                callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
+    if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@%d%@%d", [LotusyConfig url], @"/user/", userId, @"/collect?start=", start, @"&size=", size];
+    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
+                                                                      method:@"GET"
+                                                                     headers:LotusyConfig.defaultHeaders
+                                                                        body:nil
+                                                                        file:nil];
     
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        NSArray *dishes = nil;
+        if (result.success) {
+            dishes = [response objectForKey:@"dishes"];
+        }
+        callback(result, dishes);
+    }];
 }
 
 
-+ (void) userHitlist:(int)userId
-               start:(int)start
-                size:(int)size
-            callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
++ (void) userHitlists:(int)userId
+                start:(int)start
+                 size:(int)size
+             callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
+    if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@%d%@%d", [LotusyConfig url], @"/user/", userId, @"/hitlist?start=", start, @"&size=", size];
+    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
+                                                                      method:@"GET"
+                                                                     headers:LotusyConfig.defaultHeaders
+                                                                        body:nil
+                                                                        file:nil];
     
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        NSArray *dishes = nil;
+        if (result.success) {
+            dishes = [response objectForKey:@"dishes"];
+        }
+        callback(result, dishes);
+    }];
 }
 
 
@@ -181,26 +241,78 @@
                   start:(int)start
                    size:(int)size
                callback:(void(^)(LotusyRESTResult*, NSArray*))callback; {
+    if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@%d%@%d", [LotusyConfig url], @"/user/", userId, @"/activites?start=", start, @"&size=", size];
+    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
+                                                                      method:@"GET"
+                                                                     headers:LotusyConfig.defaultHeaders
+                                                                        body:nil
+                                                                        file:nil];
     
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        NSArray *activities = nil;
+        if (result.success) {
+            activities = [response objectForKey:@"activities"];
+        }
+        callback(result, activities);
+    }];
 }
 
 
 + (void) buddyUser:(int)userId
           callback:(void(^)(LotusyRESTResult*))callback {
+    if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult]); }
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d", AccountSDK.url, @"/user/follow/", userId];
     
+    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
+                                                                      method:@"POST"
+                                                                     headers:LotusyConfig.defaultHeaders
+                                                                        body:nil
+                                                                        file:nil];
+
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        callback(result);
+    }];
 }
 
 
 + (void) unBuddyUser:(int)userId
             callback:(void(^)(LotusyRESTResult*))callback {
+    if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult]); }
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d", AccountSDK.url, @"/user/follow/", userId];
     
+    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
+                                                                      method:@"DELETE"
+                                                                     headers:LotusyConfig.defaultHeaders
+                                                                        body:nil
+                                                                        file:nil];
+    
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        callback(result);
+    }];
 }
 
 
 + (void) updateUserAlert:(NSString*)alertCode
                    isAdd:(BOOL)isAdd
                 callback:(void(^)(LotusyRESTResult*))callback {
-    
+    if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult]); }
+    NSString *action = isAdd ? @"add" : @"remove";
+    NSString* uri = [NSString stringWithFormat:@"%@%@%@%@", AccountSDK.url, @"/user/follow/", alertCode, action];
+
+    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
+                                                                      method:@"POST"
+                                                                     headers:LotusyConfig.defaultHeaders
+                                                                        body:nil
+                                                                        file:nil];
+
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        callback(result);
+    }];
 }
 
 #pragma - pubilc / private
