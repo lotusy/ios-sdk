@@ -146,7 +146,7 @@
     if (isMiles) { miles = @"true"; }
     NSString* uri = [NSString stringWithFormat:@"%@%@%f%@%f%@%d%@%@%@%d%@%d",
                      [LotusyConfig url],
-                     @"/location?lat=", latlng.lat,
+                     @"/business/location?lat=", latlng.lat,
                      @"&lng=", latlng.lng,
                      @"&radius=", radius,
                      @"&is_miles=", miles,
@@ -174,35 +174,29 @@
 
 + (void) businessNameSearch:(NSString*)name
                    callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
-    
+    if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
+    NSString* uri = [NSString stringWithFormat:@"%@%@%@", [LotusyConfig url], @"/business/search/name?name=", name];
+
+    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
+                                                                      method:@"GET"
+                                                                     headers:LotusyConfig.defaultHeaders
+                                                                        body:nil
+                                                                        file:nil];
+
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        NSArray* businesses = nil;
+        
+        if (result.success) {
+            businesses = [response objectForKey:@"businesses"];
+        }
+
+        callback(result, businesses);
+    }];
 }
 
 
 #pragma - pubilc / private
 
-+ (NSString*) url {
-    ENVIRONMENT environment = [LotusyConfig currentEnvironment];
-    
-    NSString* uri = @"";
-    switch (environment) {
-        case DEV:
-            uri = @"http://local.business.lotusy.com/rest";
-            break;
-        case TEST:
-            uri = @"http://test.business.lotusy.com/rest";
-            break;
-        case INT:
-            uri = @"http://int.business.lotusy.com/rest";
-            break;
-        case STAG:
-            uri = @"http://staging.business.lotusy.com/rest";
-            break;
-        case PROD:
-            uri = @"http://business.lotusy.com/rest";
-            break;
-    }
-    
-    return uri;
-}
 
 @end

@@ -16,7 +16,6 @@
              zhName:(NSString*)zhName
              twName:(NSString*)twName
              enName:(NSString*)enName
-           verified:(BOOL)verified
            callback:(void(^)(LotusyRESTResult*))callback;
 
 
@@ -37,6 +36,7 @@
 
 
 + (void) keywordDish:(int)dishId
+        keywordCodes:(NSArray*)keywordCodes
             callback:(void(^)(LotusyRESTResult*))callback;
 
 
@@ -55,6 +55,8 @@
 
 
 + (void) locationDishes:(LotusyLatLng*)location
+                 radius:(int)radius
+                isMiles:(BOOL)isMiles
                   start:(int)start
                    size:(int)size
                callback:(void(^)(LotusyRESTResult*, NSArray*))callback;

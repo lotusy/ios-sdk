@@ -26,6 +26,8 @@
                message:(NSString*)message
               callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
+    
+    NSString* uri = [NSString stringWithFormat:@"%@%@", [LotusyConfig url], @"/comment"];
 
     NSDictionary* body = @{ @"lat" : [[NSNumber alloc]initWithDouble:latlng.lat],
                             @"lng" : [[NSNumber alloc]initWithDouble:latlng.lng],
@@ -34,7 +36,7 @@
                             @"message" : message
                            };
     
-    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:@"/comment"
+    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
                                                                       method:@"POST"
                                                                      headers:LotusyConfig.defaultHeaders
                                                                         body:body
@@ -50,7 +52,7 @@
               callback:(void(^)(LotusyRESTResult*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult]); }
     
-    NSString* uri = [NSString stringWithFormat:@"%@%d", @"/comment/", commentId];
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d", [LotusyConfig url], @"/comment/", commentId];
     
     LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
                                                                       method:@"DELETE"
@@ -68,34 +70,28 @@
                start:(int)start
                 size:(int)size
             callback:(void(^)(LotusyRESTResult*, NSArray*))callback {
+    if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@%d%@%d", [LotusyConfig url], @"/comment/dish/", dishId, @"/comments?start=", start, @"&size=", size];
     
+    LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
+                                                                      method:@"GET"
+                                                                     headers:LotusyConfig.defaultHeaders
+                                                                        body:nil
+                                                                        file:nil];
+    
+    LotusyConnector* connector = [[LotusyConnector alloc]initWithParam:param];
+    [connector execute:^(LotusyRESTResult* result, NSDictionary* response) {
+        NSArray* comments = nil;
+        
+        if (result.success) {
+            comments = [response objectForKey:@"comments"];
+        }
+        
+        callback(result, comments);
+    }];
 }
 
 #pragma - pubilc / private
 
-+ (NSString*) url {
-    ENVIRONMENT environment = [LotusyConfig currentEnvironment];
-    
-    NSString* uri = @"";
-    switch (environment) {
-        case DEV:
-            uri = @"http://local.comment.lotusy.com/rest";
-            break;
-        case TEST:
-            uri = @"http://test.comment.lotusy.com/rest";
-            break;
-        case INT:
-            uri = @"http://int.comment.lotusy.com/rest";
-            break;
-        case STAG:
-            uri = @"http://staging.comment.lotusy.com/rest";
-            break;
-        case PROD:
-            uri = @"http://comment.lotusy.com/rest";
-            break;
-    }
-    
-    return uri;
-}
 
 @end

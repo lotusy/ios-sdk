@@ -88,7 +88,7 @@
 
 + (void) currentUserProfile:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", AccountSDK.url, @"/user/", [LotusyToken current].userId ,@"/profile"];
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d%@", LotusyConfig.url, @"/user/", [LotusyToken current].userId ,@"/profile"];
     LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
                                                                       method:@"GET"
                                                                      headers:LotusyConfig.defaultHeaders
@@ -125,7 +125,7 @@
            description:(NSString*)description
               callback:(void(^)(LotusyRESTResult*, NSDictionary*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult], nil); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@", AccountSDK.url, @"/user/profile"];
+    NSString* uri = [NSString stringWithFormat:@"%@%@", LotusyConfig.url, @"/user/profile"];
     NSMutableDictionary* body = [[NSMutableDictionary alloc]init];
     [LotusyUtility add2dict:body key:@"username" value:userName];
     [LotusyUtility add2dict:body key:@"nickname" value:nickName];
@@ -263,7 +263,7 @@
 + (void) buddyUser:(int)userId
           callback:(void(^)(LotusyRESTResult*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult]); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d", AccountSDK.url, @"/user/follow/", userId];
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d", LotusyConfig.url, @"/user/follow/", userId];
     
     LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
                                                                       method:@"POST"
@@ -281,7 +281,7 @@
 + (void) unBuddyUser:(int)userId
             callback:(void(^)(LotusyRESTResult*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult]); }
-    NSString* uri = [NSString stringWithFormat:@"%@%@%d", AccountSDK.url, @"/user/follow/", userId];
+    NSString* uri = [NSString stringWithFormat:@"%@%@%d", LotusyConfig.url, @"/user/follow/", userId];
     
     LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
                                                                       method:@"DELETE"
@@ -301,7 +301,7 @@
                 callback:(void(^)(LotusyRESTResult*))callback {
     if (LotusyToken.current == nil) { callback([LotusyRESTResult unauthResult]); }
     NSString *action = isAdd ? @"add" : @"remove";
-    NSString* uri = [NSString stringWithFormat:@"%@%@%@%@", AccountSDK.url, @"/user/follow/", alertCode, action];
+    NSString* uri = [NSString stringWithFormat:@"%@%@%@%@", LotusyConfig.url, @"/user/follow/", alertCode, action];
 
     LotusyConnectorParam* param = [[LotusyConnectorParam alloc]initWithParam:uri
                                                                       method:@"POST"
@@ -317,29 +317,5 @@
 
 #pragma - pubilc / private
 
-+ (NSString*) url {
-    ENVIRONMENT environment = [LotusyConfig currentEnvironment];
-
-    NSString* uri = @"";
-    switch (environment) {
-        case DEV:
-            uri = @"http://local.account.lotusy.com/rest";
-            break;
-        case TEST:
-            uri = @"http://test.account.lotusy.com/rest";
-            break;
-        case INT:
-            uri = @"http://int.account.lotusy.com/rest";
-            break;
-        case STAG:
-            uri = @"http://staging.account.lotusy.com/rest";
-            break;
-        case PROD:
-            uri = @"http://account.lotusy.com/rest";
-            break;
-    }
-
-    return uri;
-}
 
 @end
