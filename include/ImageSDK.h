@@ -28,14 +28,14 @@
                      callback:(void(^)(LotusyRESTResult*))callback;
 
 
-+ (void) userSignatureImages:(int)dishId
++ (void) userSignatureImages:(int)userId
                        start:(int)start
                         size:(int)size
                     callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
 
 
 + (void) deleteUserSignature:(int)signatureId
-                    callback:(void(^)(LotusyRESTResult*, NSArray*))callback;
+                    callback:(void(^)(LotusyRESTResult*))callback;
 
 
 + (void) uploadUserImage:(NSData*)file
