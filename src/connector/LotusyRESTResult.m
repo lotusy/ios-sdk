@@ -28,6 +28,9 @@
     return self;
 }
 - (void) addError:(NSString*)error {
+    if (!error) {
+        return;
+    }
     [self._errors addObject:error];
 }
 - (BOOL) success {
